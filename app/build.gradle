@@ -5,17 +5,17 @@ plugins {
 
 android {
 
-    compileSdk 32
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
 
         applicationId "com.orogersilva.myweatherforecast"
 
-        minSdk 21
-        targetSdk 32
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
 
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersion.versionCode
+        versionName appVersion.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -24,10 +24,34 @@ android {
         }
     }
 
+    lintOptions {
+
+        abortOnError true
+        checkDependencies true
+        checkReleaseBuilds false
+        htmlOutput file("lint-report.html")
+        htmlReport false
+        lintConfig file("${project.rootDir}/quality/lint.xml")
+        warningsAsErrors true
+        xmlReport true
+    }
+
     buildTypes {
 
+        debug {
+
+            testCoverageEnabled false
+
+            debuggable true
+
+            applicationIdSuffix ".dev"
+            versionNameSuffix '-DEV'
+        }
+
         release {
-            minifyEnabled false
+
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

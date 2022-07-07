@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+
+    <issue id="ButtonCase" severity="ignore" />
+
+    <issue id="GoogleAppIndexingWarning" severity="ignore" />
+
+    <issue id="DuplicateIncludedIds" severity="ignore" />
+
+    <issue id="IconDensities" severity="ignore" />
+
+    <issue id="IconDuplicates" severity="ignore" />
+
+    <issue id="IconLocation" severity="ignore" />
+
+    <issue id="LabelFor" severity="ignore" />
+
+    <issue id="LockedOrientationActivity" severity="ignore" />
+
+    <issue id="Overdraw" severity="ignore" />
+
+    <issue id="PluralsCandidate" severity="ignore" />
+
+    <issue id="RtlHardcoded" severity="ignore" />
+
+    <issue id="RtlSymmetry" severity="ignore" />
+
+    <issue id="SmallSp" severity="ignore" />
+
+    <issue id="Typos" severity="ignore" />
+    
+    <issue id="UnusedResources" severity="ignore" />
+
+    <issue id="UseCompoundDrawables" severity="ignore" />
+
+    <issue id="VectorPath" severity="ignore" />
+
+</lint>
