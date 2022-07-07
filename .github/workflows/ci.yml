@@ -11,7 +11,9 @@ jobs:
   generatedependencygraph:
 
     name: Generate Dependency Graph
+    needs: instrumentedtests
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 11
