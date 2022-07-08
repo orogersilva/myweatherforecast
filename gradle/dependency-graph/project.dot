@@ -6,13 +6,10 @@ digraph {
   # Projects
 
   ":app" [fillcolor="#baffc9"];
-  ":module1" [fillcolor="#baffc9"];
 
   {rank = same;}
 
   # Dependencies
 
   ":app" -> ":app"
-  ":app" -> ":module1" [style=dotted]
-  ":module1" -> ":module1"
 }
