@@ -32,8 +32,7 @@ jobs:
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git status
-          git diff --quiet && git diff --staged --quiet || git commit -am 'docs: Updating dependency graph'
+          git add . && git diff --quiet && git diff --staged --quiet || git commit -am 'docs: Updating dependency graph'
 
       - name: Push
         uses: ad-m/github-push-action@master
