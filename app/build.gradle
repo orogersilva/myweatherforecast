@@ -95,8 +95,6 @@ android {
 
 dependencies {
 
-    implementation project(':module1')
-
     implementation deps.android.activity.activityCompose
     implementation deps.android.compose.material3
     implementation deps.android.compose.ui

@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Weather Forecast"
 include ':app'
-include ':module1'
