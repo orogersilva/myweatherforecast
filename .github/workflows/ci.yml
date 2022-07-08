@@ -89,6 +89,7 @@ jobs:
   generatedependencygraph:
 
     name: Generate Dependency Graph
+    needs: instrumentedtests
     runs-on: ubuntu-latest
 
     steps:
