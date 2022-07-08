@@ -28,12 +28,6 @@ jobs:
       - name: Generate Dependency Graph
         run: ./gradlew projectDependencyGraph
 
-      - name: Upload Dependency Graph
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-graph
-          path: /home/runner/work/myweatherforecast/myweatherforecast/gradle/dependency-graph/project.dot.png
-
       - name: Commit
         run: |
           git config --local user.email 'action@github.com'
@@ -44,4 +38,3 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
