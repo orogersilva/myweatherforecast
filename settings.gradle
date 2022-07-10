@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Weather Forecast"
 include ':app'
+include ':platform:testing'
+include ':platform:core:networking'
+include ':feature:weekly'
+include ':platform:core:data'
