@@ -38,9 +38,12 @@ dependencies {
 
     implementation project(':platform:core:networking')
 
+    implementation deps.coroutines.android
+
     testImplementation project(':platform:testing')
 
     testImplementation deps.coroutines.test
     testImplementation deps.junit.core
     testImplementation deps.kotlin.test
+    testImplementation deps.turbine.core
 }

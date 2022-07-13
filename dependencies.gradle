@@ -62,7 +62,7 @@ ext.deps = [
                 ]
         ],
         'coroutines': [
-                'core': "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutinesVersion}",
+                'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesVersion}",
                 'test': "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutinesVersion}"
         ],
         'dagger': [
