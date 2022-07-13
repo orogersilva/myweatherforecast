@@ -11,6 +11,7 @@ buildscript {
     dependencies {
 
         classpath "com.android.tools.build:gradle:$versions.androidGradlePluginVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.daggerHiltVersion}"
         classpath "org.jetbrains.kotlin:kotlin-serialization:${versions.kotlinVersion}"
 
         // NOTE: Do not place your application dependencies here; they belong

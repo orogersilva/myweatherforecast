@@ -54,10 +54,15 @@ dependencies {
 
     api project(':platform:core:data')
 
+    debugImplementation deps.chucker.core
+    releaseImplementation deps.chucker.noop
+    implementation deps.dagger.hilt.android
+    kapt deps.dagger.hilt.compiler
     implementation deps.kotlin.serialization
     api deps.moshi.core
     kapt deps.moshi.kotlincodegen
     implementation deps.okhttp.loggingInterceptor
     implementation deps.retrofit.converterMoshi
     api deps.retrofit.core
+    implementation deps.timber.core
 }

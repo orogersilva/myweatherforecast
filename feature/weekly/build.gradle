@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -38,7 +40,11 @@ dependencies {
 
     implementation project(':platform:core:networking')
 
+    implementation deps.android.lifecycle.viewModel
+
     implementation deps.coroutines.android
+    implementation deps.dagger.hilt.android
+    kapt deps.dagger.hilt.compiler
 
     testImplementation project(':platform:testing')
 
