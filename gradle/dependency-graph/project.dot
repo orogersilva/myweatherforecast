@@ -6,10 +6,22 @@ digraph {
   # Projects
 
   ":app" [fillcolor="#baffc9"];
+  ":feature:weekly" [fillcolor="#baffc9"];
+  ":platform:core:data" [fillcolor="#baffc9"];
+  ":platform:core:networking" [fillcolor="#baffc9"];
+  ":platform:testing" [fillcolor="#baffc9"];
 
   {rank = same;}
 
   # Dependencies
 
   ":app" -> ":app"
+  ":feature:weekly" -> ":feature:weekly"
+  ":feature:weekly" -> ":platform:core:networking" [style=dotted]
+  ":feature:weekly" -> ":platform:testing" [style=dotted]
+  ":platform:testing" -> ":platform:testing"
+  ":platform:testing" -> ":platform:core:networking" [style=dotted]
+  ":platform:core:data" -> ":platform:core:data"
+  ":platform:core:networking" -> ":platform:core:data"
+  ":platform:core:networking" -> ":platform:core:networking"
 }
