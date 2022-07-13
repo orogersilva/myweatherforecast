@@ -55,6 +55,9 @@ android {
 
             debuggable true
 
+            buildConfigField "Boolean", "IS_DEBUG_BUILD", "true"
+            buildConfigField "Boolean", "IS_RELEASE_BUILD", "false"
+
             applicationIdSuffix ".dev"
             versionNameSuffix '-DEV'
         }
@@ -63,7 +66,11 @@ android {
 
             minifyEnabled true
             shrinkResources true
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "Boolean", "IS_DEBUG_BUILD", "false"
+            buildConfigField "Boolean", "IS_RELEASE_BUILD", "true"
 
             signingConfig signingConfigs.release
         }
@@ -102,6 +109,8 @@ dependencies {
     implementation deps.android.compose.uiToolingPreview
     implementation deps.android.ktx.core
     debugImplementation deps.android.test.composeManifest
+
+    implementation deps.timber.core
 
     testImplementation deps.junit.core
 
