@@ -32,11 +32,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion versions.androidComposeCompilerVersion
+    }
 }
 
 dependencies {
 
     implementation project(':feature:weekly')
 
+    implementation deps.android.compose.ui
     implementation deps.android.hilt.navigationCompose
 }

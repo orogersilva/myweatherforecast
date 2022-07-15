@@ -6,8 +6,9 @@ import com.orogersilva.myweatherforecast.weekly.data.repository.WeeklyWeatherFor
 import com.orogersilva.myweatherforecast.weekly.data.source.WeeklyWeatherForecastRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class WeeklyWeatherForecastRepositoryImpl constructor(
+class WeeklyWeatherForecastRepositoryImpl @Inject constructor(
     private val weeklyWeatherForecastRemoteDataSource: WeeklyWeatherForecastRemoteDataSource
 ) : WeeklyWeatherForecastRepository {
 

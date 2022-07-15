@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.orogersilva.myweatherforecast.data.domain.Result
 import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
 import com.orogersilva.myweatherforecast.weekly.data.repository.WeeklyWeatherForecastRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-internal class WeeklyForecastSummaryViewModel @Inject constructor(
+@HiltViewModel
+class WeeklyForecastSummaryViewModel @Inject constructor(
     private val weeklyWeatherForecastRepository: WeeklyWeatherForecastRepository
 ) : ViewModel() {
 

@@ -93,7 +93,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion versions.androidComposeVersion
+        kotlinCompilerExtensionVersion versions.androidComposeCompilerVersion
     }
 
     packagingOptions {
@@ -104,6 +104,8 @@ android {
 }
 
 dependencies {
+
+    implementation project(':navigation')
 
     implementation deps.android.activity.activityCompose
     implementation deps.android.compose.material3

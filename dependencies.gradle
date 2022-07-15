@@ -11,8 +11,9 @@ ext.appVersion = [
 
 ext.versions = [
         androidActivityVersion: '1.4.0',
-        androidComposeVersion: '1.2.0-rc01',
-        androidComposeMaterial3Version: '1.0.0-alpha12',
+        androidComposeVersion: '1.1.1',
+        androidComposeCompilerVersion: '1.2.0',
+        androidComposeMaterial3Version: '1.0.0-alpha14',
         androidDataStoreVersion: '1.0.0',
         androidGradlePluginVersion: '7.2.1',
         androidHiltNavigationCompose: '1.0.0',
@@ -27,7 +28,7 @@ ext.versions = [
         espressoVersion: '3.4.0',
         junitVersion: '4.13.2',
         kotlinSerializationVersion: '1.3.3',
-        kotlinVersion: '1.6.10',
+        kotlinVersion: '1.7.0',
         moshiVersion: '1.13.0',
         okhttpVersion: '4.9.3',
         retrofitVersion: '2.9.0',
