@@ -15,6 +15,7 @@ ext.versions = [
         androidComposeMaterial3Version: '1.0.0-alpha12',
         androidDataStoreVersion: '1.0.0',
         androidGradlePluginVersion: '7.2.1',
+        androidHiltNavigationCompose: '1.0.0',
         androidKtxVersion: '1.7.0',
         androidLifecycleVersion: '2.5.0',
         androidTestCoreVersion: '1.4.0',
@@ -47,6 +48,9 @@ ext.deps = [
                 ],
                 'dataStore': [
                         'preferences': "androidx.datastore:datastore-preferences:${versions.androidDataStoreVersion}"
+                ],
+                'hilt': [
+                        'navigationCompose': "androidx.hilt:hilt-navigation-compose:${versions.androidHiltNavigationCompose}"
                 ],
                 'ktx': [
                         'core': "androidx.core:core-ktx:${versions.androidKtxVersion}"
