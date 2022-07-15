@@ -17,6 +17,7 @@ digraph {
   # Dependencies
 
   ":app" -> ":app"
+  ":app" -> ":navigation" [style=dotted]
   ":navigation" -> ":navigation"
   ":navigation" -> ":feature:weekly" [style=dotted]
   ":feature:weekly" -> ":feature:weekly"
