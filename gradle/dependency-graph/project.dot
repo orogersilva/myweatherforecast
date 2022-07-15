@@ -7,6 +7,7 @@ digraph {
 
   ":app" [fillcolor="#baffc9"];
   ":feature:weekly" [fillcolor="#baffc9"];
+  ":navigation" [fillcolor="#baffc9"];
   ":platform:core:data" [fillcolor="#baffc9"];
   ":platform:core:networking" [fillcolor="#baffc9"];
   ":platform:testing" [fillcolor="#baffc9"];
@@ -16,6 +17,8 @@ digraph {
   # Dependencies
 
   ":app" -> ":app"
+  ":navigation" -> ":navigation"
+  ":navigation" -> ":feature:weekly" [style=dotted]
   ":feature:weekly" -> ":feature:weekly"
   ":feature:weekly" -> ":platform:core:networking" [style=dotted]
   ":feature:weekly" -> ":platform:testing" [style=dotted]
