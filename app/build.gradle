@@ -105,14 +105,10 @@ android {
 
 dependencies {
 
+    implementation project(':feature:weekly')
     implementation project(':navigation')
 
     implementation deps.android.activity.activityCompose
-    implementation deps.android.compose.material3
-    implementation deps.android.compose.ui
-    debugImplementation deps.android.compose.uiTooling
-    implementation deps.android.compose.uiToolingPreview
-    implementation deps.android.ktx.core
     debugImplementation deps.android.test.composeManifest
 
     implementation deps.dagger.hilt.android
