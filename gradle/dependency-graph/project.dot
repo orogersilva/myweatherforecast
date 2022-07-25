@@ -10,6 +10,7 @@ digraph {
   ":navigation" [fillcolor="#baffc9"];
   ":platform:core:data" [fillcolor="#baffc9"];
   ":platform:core:networking" [fillcolor="#baffc9"];
+  ":platform:core:ui" [fillcolor="#baffc9"];
   ":platform:testing" [fillcolor="#baffc9"];
 
   {rank = same;}
@@ -17,9 +18,11 @@ digraph {
   # Dependencies
 
   ":app" -> ":app"
+  ":app" -> ":feature:weekly" [style=dotted]
   ":app" -> ":navigation" [style=dotted]
   ":navigation" -> ":navigation"
   ":navigation" -> ":feature:weekly" [style=dotted]
+  ":feature:weekly" -> ":platform:core:ui"
   ":feature:weekly" -> ":feature:weekly"
   ":feature:weekly" -> ":platform:core:networking" [style=dotted]
   ":feature:weekly" -> ":platform:testing" [style=dotted]
@@ -28,4 +31,5 @@ digraph {
   ":platform:core:data" -> ":platform:core:data"
   ":platform:core:networking" -> ":platform:core:data"
   ":platform:core:networking" -> ":platform:core:networking"
+  ":platform:core:ui" -> ":platform:core:ui"
 }
