@@ -34,12 +34,14 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
                 .catch { e -> Result.Error(Exception(e)) }
                 .collect { weatherForecasts ->
                     _uiState.update { currentUiState ->
+
                         currentUiState.copy(
                             weatherForecasts = if (weatherForecasts is Result.Success) {
                                 weatherForecasts.data.toMutableList()
                             } else {
-                                null
+                                mutableListOf()
                             },
+                            isRequiredInitialWeeklyWeatherForecastSummaryLoad = false,
                             isLoadingWeeklyWeatherForecastSummary = false,
                             hasError = weatherForecasts !is Result.Success
                         )
@@ -49,7 +51,8 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
     }
 
     data class WeeklyWeatherForecastSummaryViewState(
-        val weatherForecasts: MutableList<WeatherForecast>? = null,
+        val weatherForecasts: MutableList<WeatherForecast> = mutableListOf(),
+        val isRequiredInitialWeeklyWeatherForecastSummaryLoad: Boolean = true,
         val isLoadingWeeklyWeatherForecastSummary: Boolean = false,
         val hasError: Boolean = false
     )

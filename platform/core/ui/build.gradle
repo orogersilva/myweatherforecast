@@ -44,9 +44,12 @@ android {
 
 dependencies {
 
+    api deps.android.activity.activityCompose
     api deps.android.compose.material3
     api deps.android.compose.ui
     debugApi deps.android.compose.uiTooling
     api deps.android.compose.uiToolingPreview
+    debugApi deps.android.customView.core
+    debugApi deps.android.customView.poolingContainer
     api deps.android.ktx.core
 }

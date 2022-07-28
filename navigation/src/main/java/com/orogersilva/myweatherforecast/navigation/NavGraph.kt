@@ -5,7 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.orogersilva.myweatherforecast.weekly.ui.screen.WeeklyForecastSummaryScreen
+import com.orogersilva.myweatherforecast.weekly.ui.screen.WeeklyWeatherForecastSummaryScreen
 
 @Composable
 fun NavGraph() {
@@ -17,8 +17,8 @@ fun NavGraph() {
         startDestination = Screen.WeeklyForecastSummary.route
     ) {
         composable(Screen.WeeklyForecastSummary.route) {
-            WeeklyForecastSummaryScreen(
-                weeklyForecastSummaryViewModel = hiltViewModel()
+            WeeklyWeatherForecastSummaryScreen(
+                viewModel = hiltViewModel()
             )
         }
     }

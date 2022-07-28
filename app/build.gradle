@@ -108,7 +108,6 @@ dependencies {
     implementation project(':feature:weekly')
     implementation project(':navigation')
 
-    implementation deps.android.activity.activityCompose
     debugImplementation deps.android.test.composeManifest
 
     implementation deps.dagger.hilt.android
