@@ -117,7 +117,7 @@ class WeeklyWeatherForecastRemoteDataSourceTest {
         WeeklyWeatherForecastDto(
             latitude = -29.625,
             longitude = -51.125,
-            elevation = 847,
+            elevation = 847.3,
             generationTimeInMs = 0.24902820587158203,
             utcOffsetSeconds = 0,
             dailyData = DailyDataDto(
