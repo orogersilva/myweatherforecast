@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    implementation project(':platform:core:ui')
+
     api deps.moshi.core
     kapt deps.moshi.kotlincodegen
 

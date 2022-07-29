@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.sp
 import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 import com.orogersilva.myweatherforecast.ui.screen.LoadingSubScreen
+import com.orogersilva.myweatherforecast.ui.theme.Blue40
+import com.orogersilva.myweatherforecast.ui.theme.Orange90
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel.WeeklyWeatherForecastSummaryViewState
 import java.text.DecimalFormat
@@ -70,7 +72,8 @@ fun WeatherForecastMainContent(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Orange90),
         verticalArrangement = Arrangement.Center
     ) {
         WeeklyWeatherForecastCarousel(uiState = uiState)
@@ -82,15 +85,18 @@ fun WeeklyWeatherForecastCarousel(
     uiState: WeeklyWeatherForecastSummaryViewState
 ) {
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.background(Color.Red)
+        modifier = Modifier
+            .padding(horizontal = 24.dp)
     ) {
         items(uiState.weatherForecasts) { weatherForecast ->
             DayWeatherContent(
                 dateStr = weatherForecast.dateStr,
                 min = weatherForecast.temperatureMinMax.first,
-                max = weatherForecast.temperatureMinMax.second
+                max = weatherForecast.temperatureMinMax.second,
+                backgroundColor = weatherForecast.weatherCode.backgroundColor,
+                textColor = weatherForecast.weatherCode.textColor
             )
         }
     }
@@ -99,7 +105,9 @@ fun WeeklyWeatherForecastCarousel(
 @Composable
 fun DayWeatherContent(dateStr: String,
                       min: Double,
-                      max: Double) {
+                      max: Double,
+                      backgroundColor: Color,
+                      textColor: Color) {
 
     val weatherLocalDate = LocalDate.parse(dateStr)
     val temperatureDecimalFormat = DecimalFormat("#.0")
@@ -107,16 +115,17 @@ fun DayWeatherContent(dateStr: String,
     Column(
         modifier = Modifier
             .size(200.dp, 200.dp)
-            .padding(16.dp)
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(16.dp))
+            .background(backgroundColor)
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween) {
         Text(
             text = "${weatherLocalDate.month} ${weatherLocalDate.dayOfMonth}",
+            color = textColor,
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
-                .background(Color.Green)
                 .wrapContentHeight(),
             textAlign = TextAlign.Center,
             fontSize = 24.sp,
@@ -127,10 +136,10 @@ fun DayWeatherContent(dateStr: String,
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .background(Color.Yellow)
         ) {
             Text(
                 text = temperatureDecimalFormat.format(min),
+                color = textColor,
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(1f)
@@ -140,6 +149,7 @@ fun DayWeatherContent(dateStr: String,
             )
             Text(
                 text = temperatureDecimalFormat.format(max),
+                color = textColor,
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(1f)
@@ -257,6 +267,8 @@ fun DayWeatherContentPreview() {
     DayWeatherContent(
         dateStr = "2022-07-25",
         min = 13.0,
-        max = 23.7
+        max = 23.7,
+        backgroundColor = Blue40,
+        textColor = Color.White
     )
 }
