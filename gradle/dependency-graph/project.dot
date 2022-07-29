@@ -29,6 +29,7 @@ digraph {
   ":platform:testing" -> ":platform:testing"
   ":platform:testing" -> ":platform:core:networking" [style=dotted]
   ":platform:core:data" -> ":platform:core:data"
+  ":platform:core:data" -> ":platform:core:ui" [style=dotted]
   ":platform:core:networking" -> ":platform:core:data"
   ":platform:core:networking" -> ":platform:core:networking"
   ":platform:core:ui" -> ":platform:core:ui"
