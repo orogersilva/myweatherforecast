@@ -14,6 +14,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -124,6 +127,7 @@ fun WeeklyWeatherForecastCarousel(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DayWeatherContent(dateStr: String,
                       min: Double,
@@ -134,51 +138,59 @@ fun DayWeatherContent(dateStr: String,
     val weatherLocalDate = LocalDate.parse(dateStr)
     val temperatureDecimalFormat = DecimalFormat("#.0")
 
-    Column(
+    Card(
+        shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .size(200.dp, 200.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(backgroundColor)
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween) {
-        Text(
-            text = "${weatherLocalDate.month} ${weatherLocalDate.dayOfMonth}",
-            color = textColor,
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            textAlign = TextAlign.Center,
-            fontSize = 24.sp,
-        )
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) {
+        elevation = CardDefaults
+            .cardElevation(10.dp),
+        colors = CardDefaults
+            .cardColors(
+                containerColor = backgroundColor
+            )
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween) {
             Text(
-                text = temperatureDecimalFormat.format(min),
+                text = "${weatherLocalDate.month} ${weatherLocalDate.dayOfMonth}",
                 color = textColor,
                 modifier = Modifier
-                    .fillMaxSize()
                     .weight(1f)
+                    .fillMaxWidth()
                     .wrapContentHeight(),
                 textAlign = TextAlign.Center,
-                fontSize = 24.sp
+                fontSize = 24.sp,
             )
-            Text(
-                text = temperatureDecimalFormat.format(max),
-                color = textColor,
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .weight(1f)
-                    .wrapContentHeight(),
-                textAlign = TextAlign.Center,
-                fontSize = 24.sp
-            )
+            ) {
+                Text(
+                    text = temperatureDecimalFormat.format(min),
+                    color = textColor,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                        .wrapContentHeight(),
+                    textAlign = TextAlign.Center,
+                    fontSize = 24.sp
+                )
+                Text(
+                    text = temperatureDecimalFormat.format(max),
+                    color = textColor,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                        .wrapContentHeight(),
+                    textAlign = TextAlign.Center,
+                    fontSize = 24.sp
+                )
+            }
         }
     }
 }
