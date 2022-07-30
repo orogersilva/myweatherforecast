@@ -10,6 +10,7 @@ ext.appVersion = [
 ]
 
 ext.versions = [
+        accompanistVersion: '0.25.0',
         androidActivityVersion: '1.4.0',
         androidComposeVersion: '1.1.1',
         androidComposeCompilerVersion: '1.2.0',
@@ -40,6 +41,9 @@ ext.versions = [
 ]
 
 ext.deps = [
+        'accompanist': [
+                'swipeRefresh': "com.google.accompanist:accompanist-swiperefresh:${versions.accompanistVersion}"
+        ],
         'android': [
                 'activity': [
                         'activityCompose': "androidx.activity:activity-compose:${versions.androidActivityVersion}"

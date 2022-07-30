@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,13 +26,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.orogersilva.myweatherforecast.data.domain.Result
 import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 import com.orogersilva.myweatherforecast.ui.screen.LoadingSubScreen
 import com.orogersilva.myweatherforecast.ui.theme.Blue40
 import com.orogersilva.myweatherforecast.ui.theme.Orange90
+import com.orogersilva.myweatherforecast.weekly.data.repository.WeeklyWeatherForecastRepository
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel.WeeklyWeatherForecastSummaryViewState
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import java.text.DecimalFormat
 import java.time.LocalDate
 
@@ -61,22 +69,36 @@ fun WeatherForecastOperationStateContent(
         if (uiState.hasError) {
             Text(text = "ERRO!")
         } else {
-            WeatherForecastMainContent(uiState = uiState)
+            WeatherForecastMainContent(
+                viewModel = viewModel,
+                uiState = uiState
+            )
         }
     }
 }
 
 @Composable
 fun WeatherForecastMainContent(
+    viewModel: WeeklyForecastSummaryViewModel,
     uiState: WeeklyWeatherForecastSummaryViewState
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Orange90),
-        verticalArrangement = Arrangement.Center
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(
+            isRefreshing = uiState.isLoadingWeeklyWeatherForecastSummary
+        ),
+        onRefresh = {
+            viewModel.loadWeeklyWeatherForecastSummary(-29.7509082, -51.2131746)
+        }
     ) {
-        WeeklyWeatherForecastCarousel(uiState = uiState)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .background(Orange90),
+            verticalArrangement = Arrangement.Center
+        ) {
+            WeeklyWeatherForecastCarousel(uiState = uiState)
+        }
     }
 }
 
@@ -165,50 +187,63 @@ fun DayWeatherContent(dateStr: String,
 @Composable
 fun WeatherForecastMainContentPreview() {
 
-    val weeklyWeatherForecastSummaryViewState = WeeklyWeatherForecastSummaryViewState(
-        weatherForecasts = mutableListOf(
-            WeatherForecast(
-                temperatureMinMax = Pair(12.9, 20.5),
-                dateStr = "2022-07-10",
-                weatherCode = WeatherCode.OVERCAST
-            ),
-            WeatherForecast(
-                temperatureMinMax = Pair(16.2, 23.2),
-                dateStr = "2022-07-11",
-                weatherCode = WeatherCode.OVERCAST
-            ),
-            WeatherForecast(
-                temperatureMinMax = Pair(5.5, 21.3),
-                dateStr = "2022-07-12",
-                weatherCode = WeatherCode.SLIGHT_OR_MODERATE_THUNDERSTORM
-            ),
-            WeatherForecast(
-                temperatureMinMax = Pair(0.8, 12.1),
-                dateStr = "2022-07-13",
-                weatherCode = WeatherCode.FOG
-            ),
-            WeatherForecast(
-                temperatureMinMax = Pair(5.2, 18.3),
-                dateStr = "2022-07-14",
-                weatherCode = WeatherCode.MODERATE_RAIN_SHOWERS
-            ),
-            WeatherForecast(
-                temperatureMinMax = Pair(14.6, 18.8),
-                dateStr = "2022-07-15",
-                weatherCode = WeatherCode.SLIGHT_RAIN_SHOWERS
-            ),
-            WeatherForecast(
-                temperatureMinMax = Pair(4.4, 15.6),
-                dateStr = "2022-07-16",
-                weatherCode = WeatherCode.MODERATE_RAIN
-            )
+    val weatherForecasts = mutableListOf(
+        WeatherForecast(
+            temperatureMinMax = Pair(12.9, 20.5),
+            dateStr = "2022-07-10",
+            weatherCode = WeatherCode.OVERCAST
         ),
+        WeatherForecast(
+            temperatureMinMax = Pair(16.2, 23.2),
+            dateStr = "2022-07-11",
+            weatherCode = WeatherCode.OVERCAST
+        ),
+        WeatherForecast(
+            temperatureMinMax = Pair(5.5, 21.3),
+            dateStr = "2022-07-12",
+            weatherCode = WeatherCode.SLIGHT_OR_MODERATE_THUNDERSTORM
+        ),
+        WeatherForecast(
+            temperatureMinMax = Pair(0.8, 12.1),
+            dateStr = "2022-07-13",
+            weatherCode = WeatherCode.FOG
+        ),
+        WeatherForecast(
+            temperatureMinMax = Pair(5.2, 18.3),
+            dateStr = "2022-07-14",
+            weatherCode = WeatherCode.MODERATE_RAIN_SHOWERS
+        ),
+        WeatherForecast(
+            temperatureMinMax = Pair(14.6, 18.8),
+            dateStr = "2022-07-15",
+            weatherCode = WeatherCode.SLIGHT_RAIN_SHOWERS
+        ),
+        WeatherForecast(
+            temperatureMinMax = Pair(4.4, 15.6),
+            dateStr = "2022-07-16",
+            weatherCode = WeatherCode.MODERATE_RAIN
+        )
+    )
+
+    val weeklyWeatherForecastSummaryViewState = WeeklyWeatherForecastSummaryViewState(
+        weatherForecasts = weatherForecasts,
         isRequiredInitialWeeklyWeatherForecastSummaryLoad = false,
         isLoadingWeeklyWeatherForecastSummary = false,
         hasError = false
     )
 
-    WeatherForecastMainContent(uiState = weeklyWeatherForecastSummaryViewState)
+    WeatherForecastMainContent(
+        viewModel = WeeklyForecastSummaryViewModel(
+            object : WeeklyWeatherForecastRepository {
+                override fun getWeeklyForecast(
+                    latitude: Double,
+                    longitude: Double
+                ): Flow<Result<List<WeatherForecast>>> =
+                    flowOf(Result.Success(weatherForecasts))
+            }
+        ),
+        uiState = weeklyWeatherForecastSummaryViewState
+    )
 }
 
 @Preview
