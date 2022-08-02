@@ -6,7 +6,6 @@ import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 import com.orogersilva.myweatherforecast.weekly.data.remote.FakeWeeklyWeatherForecastRemoteDataSource
 import com.orogersilva.myweatherforecast.weekly.data.repository.impl.WeeklyWeatherForecastRepositoryImpl
-import com.orogersilva.myweatherforecast.weekly.data.source.WeeklyWeatherForecastRemoteDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

@@ -4,14 +4,11 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
-import com.orogersilva.myweatherforecast.data.BuildConfig
 import com.orogersilva.myweatherforecast.networking.BuildConfig.IS_RELEASE_BUILD
 import com.orogersilva.myweatherforecast.networking.RetrofitBuilder
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 
 object RestClient {

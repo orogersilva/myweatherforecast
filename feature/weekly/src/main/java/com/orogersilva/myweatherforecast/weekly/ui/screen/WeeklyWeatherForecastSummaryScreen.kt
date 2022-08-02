@@ -1,12 +1,14 @@
 package com.orogersilva.myweatherforecast.weekly.ui.screen
 
+import android.annotation.SuppressLint
+import android.location.Location
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
@@ -19,18 +21,23 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.shouldShowRationale
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.orogersilva.myweatherforecast.data.domain.Result
 import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
@@ -45,9 +52,40 @@ import kotlinx.coroutines.flow.flowOf
 import java.text.DecimalFormat
 import java.time.LocalDate
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun WeeklyWeatherForecastSummaryScreen(
-    viewModel: WeeklyForecastSummaryViewModel
+fun RequestLastLocationPermissionForWeeklyWeatherForecast(
+    viewModel: WeeklyForecastSummaryViewModel,
+    fusedLocationClient: FusedLocationProviderClient
+) {
+
+    val locationPermissionState = rememberPermissionState(
+        permission = android.Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+
+    when (locationPermissionState.status) {
+
+        is PermissionStatus.Granted -> {
+            WeeklyWeatherForecastSummaryScreen(viewModel, fusedLocationClient)
+        }
+
+        is PermissionStatus.Denied -> {
+
+            if (locationPermissionState.status.shouldShowRationale) {
+            } else {
+            }
+
+            LaunchedEffect(true) {
+                locationPermissionState.launchPermissionRequest()
+            }
+        }
+    }
+}
+
+@Composable
+private fun WeeklyWeatherForecastSummaryScreen(
+    viewModel: WeeklyForecastSummaryViewModel,
+    fusedLocationClient: FusedLocationProviderClient
 ) {
 
     val uiState: WeeklyWeatherForecastSummaryViewState by viewModel.uiState.collectAsState()
@@ -55,22 +93,40 @@ fun WeeklyWeatherForecastSummaryScreen(
     if (uiState.isLoadingWeeklyWeatherForecastSummary) {
         LoadingSubScreen()
     } else {
-        WeatherForecastOperationStateContent(viewModel, uiState)
+        WeatherForecastOperationStateContent(
+            viewModel,
+            uiState,
+            fusedLocationClient
+        )
     }
 }
 
+@SuppressLint("MissingPermission")
 @Composable
-fun WeatherForecastOperationStateContent(
+private fun WeatherForecastOperationStateContent(
     viewModel: WeeklyForecastSummaryViewModel,
-    uiState: WeeklyWeatherForecastSummaryViewState
+    uiState: WeeklyWeatherForecastSummaryViewState,
+    fusedLocationClient: FusedLocationProviderClient
 ) {
 
     if (uiState.isRequiredInitialWeeklyWeatherForecastSummaryLoad) {
-        viewModel.loadWeeklyWeatherForecastSummary(-29.7509082, -51.2131746)
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+
+                if (location != null) {
+                    viewModel.loadWeeklyWeatherForecastSummary(location.latitude, location.longitude)
+                } else {
+                    TODO("To handle this flow when location is null.")
+                }
+            }.addOnFailureListener { e: Exception ->
+                TODO("To handle this exception in the future.")
+            }
     } else {
 
         if (uiState.hasError) {
-            Text(text = "ERRO!")
+            TODO("To build a friendly UI when there is some error in this flow.")
+            // Text(text = "ERRO!")
         } else {
             WeatherForecastMainContent(
                 viewModel = viewModel,
@@ -81,7 +137,7 @@ fun WeatherForecastOperationStateContent(
 }
 
 @Composable
-fun WeatherForecastMainContent(
+private fun WeatherForecastMainContent(
     viewModel: WeeklyForecastSummaryViewModel,
     uiState: WeeklyWeatherForecastSummaryViewState
 ) {
@@ -106,7 +162,7 @@ fun WeatherForecastMainContent(
 }
 
 @Composable
-fun WeeklyWeatherForecastCarousel(
+private fun WeeklyWeatherForecastCarousel(
     uiState: WeeklyWeatherForecastSummaryViewState
 ) {
     LazyRow(
@@ -129,11 +185,13 @@ fun WeeklyWeatherForecastCarousel(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DayWeatherContent(dateStr: String,
-                      min: Double,
-                      max: Double,
-                      backgroundColor: Color,
-                      textColor: Color) {
+private fun DayWeatherContent(
+    dateStr: String,
+    min: Double,
+    max: Double,
+    backgroundColor: Color,
+    textColor: Color
+) {
 
     val weatherLocalDate = LocalDate.parse(dateStr)
     val temperatureDecimalFormat = DecimalFormat("#.0")
@@ -152,7 +210,8 @@ fun DayWeatherContent(dateStr: String,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween) {
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
             Text(
                 text = "${weatherLocalDate.month} ${weatherLocalDate.dayOfMonth}",
                 color = textColor,
@@ -197,7 +256,7 @@ fun DayWeatherContent(dateStr: String,
 
 @Preview
 @Composable
-fun WeatherForecastMainContentPreview() {
+private fun WeatherForecastMainContentPreview() {
 
     val weatherForecasts = mutableListOf(
         WeatherForecast(
@@ -260,7 +319,7 @@ fun WeatherForecastMainContentPreview() {
 
 @Preview
 @Composable
-fun WeeklyWeatherForecastCarouselPreview() {
+private fun WeeklyWeatherForecastCarouselPreview() {
 
     val weeklyWeatherForecastSummaryViewState = WeeklyWeatherForecastSummaryViewState(
         weatherForecasts = mutableListOf(
@@ -310,7 +369,7 @@ fun WeeklyWeatherForecastCarouselPreview() {
 
 @Preview
 @Composable
-fun DayWeatherContentPreview() {
+private fun DayWeatherContentPreview() {
     DayWeatherContent(
         dateStr = "2022-07-25",
         min = 13.0,

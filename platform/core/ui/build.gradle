@@ -52,4 +52,6 @@ dependencies {
     debugApi deps.android.customView.core
     debugApi deps.android.customView.poolingContainer
     api deps.android.ktx.core
+
+    api deps.googlePlayServices.location
 }

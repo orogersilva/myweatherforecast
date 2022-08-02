@@ -19,17 +19,17 @@ object NetworkingErrorTransformer : ErrorTransformer {
 
     private fun isNetworkingError(error: Throwable): Boolean =
         isCanceledRequest(error) ||
-                cannotReachHost(error) ||
-                isConnectionTimeout(error)
+            cannotReachHost(error) ||
+            isConnectionTimeout(error)
 
-    private fun isCanceledRequest(error: Throwable) : Boolean =
+    private fun isCanceledRequest(error: Throwable): Boolean =
         error is IOException &&
-                error.message?.contentEquals("Canceled") ?: false
+            error.message?.contentEquals("Canceled") ?: false
 
     private fun cannotReachHost(error: Throwable): Boolean =
         error is UnknownHostException ||
-                error is ConnectException ||
-                error is NoRouteToHostException
+            error is ConnectException ||
+            error is NoRouteToHostException
 
     private fun isConnectionTimeout(error: Throwable): Boolean = error is SocketTimeoutException
 }

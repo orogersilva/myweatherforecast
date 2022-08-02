@@ -54,6 +54,7 @@ dependencies {
 
     implementation deps.android.lifecycle.viewModel
 
+    implementation deps.accompanist.permissions
     implementation deps.accompanist.swipeRefresh
     implementation deps.coroutines.android
     implementation deps.dagger.hilt.android

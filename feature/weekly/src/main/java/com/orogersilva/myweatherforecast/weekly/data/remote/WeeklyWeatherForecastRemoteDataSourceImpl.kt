@@ -11,8 +11,10 @@ class WeeklyWeatherForecastRemoteDataSourceImpl @Inject constructor (
     private val myWeatherForecastApiClient: MyWeatherForecastApiClient
 ) : WeeklyWeatherForecastRemoteDataSource {
 
-    override suspend fun getWeeklyForecast(latitude: Double,
-                                           longitude: Double): List<WeatherForecast> =
+    override suspend fun getWeeklyForecast(
+        latitude: Double,
+        longitude: Double
+    ): List<WeatherForecast> =
         managedExecution {
             WeatherForecastConverter
                 .convertWeeklyWeatherForecastDtoToWeatherForecasts(

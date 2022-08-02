@@ -3,7 +3,34 @@ package com.orogersilva.myweatherforecast.data.enum
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import com.orogersilva.myweatherforecast.data.R
-import com.orogersilva.myweatherforecast.ui.theme.*
+import com.orogersilva.myweatherforecast.ui.theme.Blue10
+import com.orogersilva.myweatherforecast.ui.theme.Blue20
+import com.orogersilva.myweatherforecast.ui.theme.Blue25
+import com.orogersilva.myweatherforecast.ui.theme.Blue30
+import com.orogersilva.myweatherforecast.ui.theme.Blue40
+import com.orogersilva.myweatherforecast.ui.theme.Blue50
+import com.orogersilva.myweatherforecast.ui.theme.Blue60
+import com.orogersilva.myweatherforecast.ui.theme.Blue80
+import com.orogersilva.myweatherforecast.ui.theme.Blue81
+import com.orogersilva.myweatherforecast.ui.theme.Blue82
+import com.orogersilva.myweatherforecast.ui.theme.Blue87
+import com.orogersilva.myweatherforecast.ui.theme.Blue91
+import com.orogersilva.myweatherforecast.ui.theme.Blue92
+import com.orogersilva.myweatherforecast.ui.theme.Blue93
+import com.orogersilva.myweatherforecast.ui.theme.Blue94
+import com.orogersilva.myweatherforecast.ui.theme.Blue95
+import com.orogersilva.myweatherforecast.ui.theme.Gray30
+import com.orogersilva.myweatherforecast.ui.theme.Gray40
+import com.orogersilva.myweatherforecast.ui.theme.Gray50
+import com.orogersilva.myweatherforecast.ui.theme.Gray80
+import com.orogersilva.myweatherforecast.ui.theme.Green90
+import com.orogersilva.myweatherforecast.ui.theme.Purple15
+import com.orogersilva.myweatherforecast.ui.theme.Purple30
+import com.orogersilva.myweatherforecast.ui.theme.SnowBlue40
+import com.orogersilva.myweatherforecast.ui.theme.SnowBlue45
+import com.orogersilva.myweatherforecast.ui.theme.SnowBlue50
+import com.orogersilva.myweatherforecast.ui.theme.SnowBlue60
+import com.orogersilva.myweatherforecast.ui.theme.SnowBlue80
 
 enum class WeatherCode(
     val code: Int,
@@ -36,13 +63,18 @@ enum class WeatherCode(
     VIOLENT_RAIN_SHOWERS(82, Blue20, Color.White, R.string.violent_rain_showers),
     SLIGHT_SNOW_SHOWERS(85, SnowBlue80, Color.White, R.string.slight_snow_showers),
     HEAVY_SNOW_SHOWERS(86, SnowBlue45, Color.White, R.string.heavy_snow_showers),
-    SLIGHT_OR_MODERATE_THUNDERSTORM(95, Blue10,
+    SLIGHT_OR_MODERATE_THUNDERSTORM(
+        95, Blue10,
         Color.White, R.string.slight_or_moderate_thunderstorm
     ),
-    THUNDERSTORM_WITH_SLIGHT_HAIL(96, Gray40, Color.White,
-        R.string.thunderstorm_with_slight_hail),
-    THUNDERSTORM_WITH_HEAVY_HAIL(99, Gray30, Color.White,
-        R.string.thunderstorm_with_heavy_hail),
+    THUNDERSTORM_WITH_SLIGHT_HAIL(
+        96, Gray40, Color.White,
+        R.string.thunderstorm_with_slight_hail
+    ),
+    THUNDERSTORM_WITH_HEAVY_HAIL(
+        99, Gray30, Color.White,
+        R.string.thunderstorm_with_heavy_hail
+    ),
     UNKNOWN(Int.MAX_VALUE, Color.Black, Color.White, R.string.unknown);
 
     companion object {

@@ -5,10 +5,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.orogersilva.myweatherforecast.weekly.ui.screen.WeeklyWeatherForecastSummaryScreen
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.orogersilva.myweatherforecast.weekly.ui.screen.RequestLastLocationPermissionForWeeklyWeatherForecast
 
 @Composable
-fun NavGraph() {
+fun NavGraph(fusedLocationClient: FusedLocationProviderClient) {
 
     val navController = rememberNavController()
 
@@ -17,8 +18,9 @@ fun NavGraph() {
         startDestination = Screen.WeeklyForecastSummary.route
     ) {
         composable(Screen.WeeklyForecastSummary.route) {
-            WeeklyWeatherForecastSummaryScreen(
-                viewModel = hiltViewModel()
+            RequestLastLocationPermissionForWeeklyWeatherForecast(
+                viewModel = hiltViewModel(),
+                fusedLocationClient = fusedLocationClient
             )
         }
     }

@@ -10,7 +10,6 @@ suspend fun <T> managedExecution(target: suspend () -> T): T =
     try {
 
         target.invoke()
-
     } catch (incoming: Throwable) {
 
         throw transformers

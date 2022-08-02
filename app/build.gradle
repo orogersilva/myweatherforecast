@@ -112,11 +112,6 @@ dependencies {
 
     implementation deps.dagger.hilt.android
     kapt deps.dagger.hilt.compiler
+    implementation deps.googlePlayServices.location
     implementation deps.timber.core
-
-    testImplementation deps.junit.core
-
-    androidTestImplementation deps.android.test.compose
-    androidTestImplementation deps.android.test.espresso
-    androidTestImplementation deps.junit.ext
 }

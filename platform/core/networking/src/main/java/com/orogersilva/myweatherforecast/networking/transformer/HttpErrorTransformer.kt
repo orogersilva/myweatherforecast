@@ -9,11 +9,11 @@ object HttpErrorTransformer : ErrorTransformer {
         when (incoming) {
             is HttpException -> translateUsingStatusCode(incoming.code())
             else -> incoming
-    }
+        }
 
     private fun translateUsingStatusCode(statusCode: Int): RemoteServiceIntegrationError =
         when (statusCode) {
             in 400..499 -> RemoteServiceIntegrationError.ClientOrigin
             else -> RemoteServiceIntegrationError.RemoteSystem
-    }
+        }
 }
