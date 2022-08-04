@@ -1,7 +1,6 @@
 package com.orogersilva.myweatherforecast.weekly.ui.screen
 
 import android.annotation.SuppressLint
-import android.location.Location
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -111,7 +110,9 @@ private fun WeatherForecastOperationStateContent(
 
     if (uiState.isRequiredInitialWeeklyWeatherForecastSummaryLoad) {
 
-        fusedLocationClient.lastLocation
+        viewModel.loadWeeklyWeatherForecastSummary(-29.7509082, -51.2131746)
+
+        /*fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
 
                 if (location != null) {
@@ -121,7 +122,7 @@ private fun WeatherForecastOperationStateContent(
                 }
             }.addOnFailureListener { e: Exception ->
                 TODO("To handle this exception in the future.")
-            }
+            }*/
     } else {
 
         if (uiState.hasError) {
