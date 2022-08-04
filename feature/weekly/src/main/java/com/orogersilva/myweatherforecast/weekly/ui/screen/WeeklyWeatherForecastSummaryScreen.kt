@@ -195,7 +195,7 @@ private fun DayWeatherContent(
 ) {
 
     val weatherLocalDate = LocalDate.parse(dateStr)
-    val temperatureDecimalFormat = DecimalFormat("#.0")
+    val temperatureDecimalFormat = DecimalFormat("0.0")
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -373,7 +373,7 @@ private fun WeeklyWeatherForecastCarouselPreview() {
 private fun DayWeatherContentPreview() {
     DayWeatherContent(
         dateStr = "2022-07-25",
-        min = 13.0,
+        min = 0.9,
         max = 23.7,
         backgroundColor = Blue40,
         textColor = Color.White
