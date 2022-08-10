@@ -1,7 +1,7 @@
 package com.orogersilva.myweatherforecast.weekly.data.repository.impl
 
 import com.orogersilva.myweatherforecast.data.domain.Result
-import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
 import com.orogersilva.myweatherforecast.weekly.data.repository.WeeklyWeatherForecastRepository
 import com.orogersilva.myweatherforecast.weekly.data.source.WeeklyWeatherForecastRemoteDataSource
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +15,7 @@ class WeeklyWeatherForecastRepositoryImpl @Inject constructor(
     override fun getWeeklyForecast(
         latitude: Double,
         longitude: Double
-    ): Flow<Result<List<WeatherForecast>>> =
+    ): Flow<Result<List<WeatherForecastMinMax>>> =
         flow {
             try {
                 val weatherForecast = weeklyWeatherForecastRemoteDataSource.getWeeklyForecast(latitude, longitude)

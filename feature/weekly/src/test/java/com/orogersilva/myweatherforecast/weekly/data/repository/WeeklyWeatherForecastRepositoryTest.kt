@@ -2,7 +2,7 @@ package com.orogersilva.myweatherforecast.weekly.data.repository
 
 import app.cash.turbine.test
 import com.orogersilva.myweatherforecast.data.domain.Result
-import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 import com.orogersilva.myweatherforecast.weekly.data.remote.FakeWeeklyWeatherForecastRemoteDataSource
 import com.orogersilva.myweatherforecast.weekly.data.repository.impl.WeeklyWeatherForecastRepositoryImpl
@@ -55,17 +55,17 @@ class WeeklyWeatherForecastRepositoryTest {
         // ARRANGE
 
         val expectedWeatherForecasts = listOf(
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(12.9, 20.5),
                 dateStr = "2022-07-10",
                 weatherCode = WeatherCode.OVERCAST
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(16.2, 23.2),
                 dateStr = "2022-07-11",
                 weatherCode = WeatherCode.OVERCAST
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(5.5, 21.3),
                 dateStr = "2022-07-12",
                 weatherCode = WeatherCode.SLIGHT_OR_MODERATE_THUNDERSTORM

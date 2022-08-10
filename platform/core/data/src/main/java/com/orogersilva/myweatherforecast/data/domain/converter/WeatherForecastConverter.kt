@@ -1,23 +1,25 @@
 package com.orogersilva.myweatherforecast.data.domain.converter
 
-import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.DailyWeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
+import com.orogersilva.myweatherforecast.data.dto.DailyWeatherForecastDto
 import com.orogersilva.myweatherforecast.data.dto.WeeklyWeatherForecastDto
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 
 object WeatherForecastConverter {
 
-    fun convertWeeklyWeatherForecastDtoToWeatherForecasts(
+    fun convertWeeklyWeatherForecastDtoToWeatherForecastsMinMax(
         weeklyWeatherForecastDto: WeeklyWeatherForecastDto
-    ): List<WeatherForecast> {
+    ): List<WeatherForecastMinMax> {
 
-        val weatherForecasts = mutableListOf<WeatherForecast>()
+        val weatherForecastsMinMax = mutableListOf<WeatherForecastMinMax>()
 
         val DAYS_IN_A_WEEK = 7
 
         for (i in 0 until DAYS_IN_A_WEEK) {
 
-            weatherForecasts.add(
-                WeatherForecast(
+            weatherForecastsMinMax.add(
+                WeatherForecastMinMax(
                     Pair(
                         weeklyWeatherForecastDto.dailyData.temperatureMin[i],
                         weeklyWeatherForecastDto.dailyData.temperatureMax[i]
@@ -28,6 +30,17 @@ object WeatherForecastConverter {
             )
         }
 
-        return weatherForecasts
+        return weatherForecastsMinMax
     }
+
+    fun convertDailyWeatherForecastDtoToDailyWeatherForecast(
+        dailyWeatherForecastDto: DailyWeatherForecastDto
+    ): DailyWeatherForecast =
+        DailyWeatherForecast(
+            weatherCode = WeatherCode.valueOf(
+                dailyWeatherForecastDto.hourlyDailyDataDto.weatherCode.first()
+            ),
+            hourlyTimeList = dailyWeatherForecastDto.hourlyDataDto.time,
+            hourlyTemperatureList = dailyWeatherForecastDto.hourlyDataDto.temperature
+        )
 }

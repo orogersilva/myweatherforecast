@@ -11,7 +11,7 @@ data class WeeklyWeatherForecastDto(
     @Json(name = "generationtime_ms") val generationTimeInMs: Double,
     @Json(name = "utc_offset_seconds") val utcOffsetSeconds: Int,
     @Json(name = "daily") val dailyData: DailyDataDto,
-    @Json(name = "daily_units") val unitDto: UnitDto
+    @Json(name = "daily_units") val dailyUnitDto: DailyUnitDto
 )
 
 @JsonClass(generateAdapter = true)
@@ -23,7 +23,7 @@ data class DailyDataDto(
 )
 
 @JsonClass(generateAdapter = true)
-data class UnitDto(
+data class DailyUnitDto(
     @Json(name = "temperature_2m_min") val temperatureMin: String?,
     @Json(name = "temperature_2m_max") val temperatureMax: String,
     @Json(name = "time") val time: String,

@@ -1,7 +1,7 @@
 package com.orogersilva.myweatherforecast.weekly.data.remote
 
 import com.orogersilva.myweatherforecast.data.domain.converter.WeatherForecastConverter
-import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
 import com.orogersilva.myweatherforecast.networking.api.MyWeatherForecastApiClient
 import com.orogersilva.myweatherforecast.networking.transformer.managedExecution
 import com.orogersilva.myweatherforecast.weekly.data.source.WeeklyWeatherForecastRemoteDataSource
@@ -14,10 +14,10 @@ class WeeklyWeatherForecastRemoteDataSourceImpl @Inject constructor (
     override suspend fun getWeeklyForecast(
         latitude: Double,
         longitude: Double
-    ): List<WeatherForecast> =
+    ): List<WeatherForecastMinMax> =
         managedExecution {
             WeatherForecastConverter
-                .convertWeeklyWeatherForecastDtoToWeatherForecasts(
+                .convertWeeklyWeatherForecastDtoToWeatherForecastsMinMax(
                     myWeatherForecastApiClient.getWeeklyWeatherForecast(latitude, longitude)
                 )
         }

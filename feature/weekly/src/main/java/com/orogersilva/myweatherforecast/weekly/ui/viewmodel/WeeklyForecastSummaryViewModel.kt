@@ -3,7 +3,7 @@ package com.orogersilva.myweatherforecast.weekly.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.orogersilva.myweatherforecast.data.domain.Result
-import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
 import com.orogersilva.myweatherforecast.weekly.data.repository.WeeklyWeatherForecastRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,7 +55,7 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
     }
 
     data class WeeklyWeatherForecastSummaryViewState(
-        val weatherForecasts: MutableList<WeatherForecast> = mutableListOf(),
+        val weatherForecasts: MutableList<WeatherForecastMinMax> = mutableListOf(),
         val isRequiredInitialWeeklyWeatherForecastSummaryLoad: Boolean = true,
         val isLoadingWeeklyWeatherForecastSummary: Boolean = false,
         val hasError: Boolean = false

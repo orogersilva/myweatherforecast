@@ -38,7 +38,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.orogersilva.myweatherforecast.data.domain.Result
-import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecast
+import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 import com.orogersilva.myweatherforecast.ui.screen.LoadingSubScreen
 import com.orogersilva.myweatherforecast.ui.theme.Blue40
@@ -260,37 +260,37 @@ private fun DayWeatherContent(
 private fun WeatherForecastMainContentPreview() {
 
     val weatherForecasts = mutableListOf(
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(12.9, 20.5),
             dateStr = "2022-07-10",
             weatherCode = WeatherCode.OVERCAST
         ),
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(16.2, 23.2),
             dateStr = "2022-07-11",
             weatherCode = WeatherCode.OVERCAST
         ),
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(5.5, 21.3),
             dateStr = "2022-07-12",
             weatherCode = WeatherCode.SLIGHT_OR_MODERATE_THUNDERSTORM
         ),
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(0.8, 12.1),
             dateStr = "2022-07-13",
             weatherCode = WeatherCode.FOG
         ),
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(5.2, 18.3),
             dateStr = "2022-07-14",
             weatherCode = WeatherCode.MODERATE_RAIN_SHOWERS
         ),
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(14.6, 18.8),
             dateStr = "2022-07-15",
             weatherCode = WeatherCode.SLIGHT_RAIN_SHOWERS
         ),
-        WeatherForecast(
+        WeatherForecastMinMax(
             temperatureMinMax = Pair(4.4, 15.6),
             dateStr = "2022-07-16",
             weatherCode = WeatherCode.MODERATE_RAIN
@@ -310,7 +310,7 @@ private fun WeatherForecastMainContentPreview() {
                 override fun getWeeklyForecast(
                     latitude: Double,
                     longitude: Double
-                ): Flow<Result<List<WeatherForecast>>> =
+                ): Flow<Result<List<WeatherForecastMinMax>>> =
                     flowOf(Result.Success(weatherForecasts))
             }
         ),
@@ -322,39 +322,39 @@ private fun WeatherForecastMainContentPreview() {
 @Composable
 private fun WeeklyWeatherForecastCarouselPreview() {
 
-    val weeklyWeatherForecastSummaryViewState = WeeklyWeatherForecastSummaryViewState(
+    val weeklyWeatherForecastMinMaxSummaryViewState = WeeklyWeatherForecastSummaryViewState(
         weatherForecasts = mutableListOf(
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(12.9, 20.5),
                 dateStr = "2022-07-10",
                 weatherCode = WeatherCode.OVERCAST
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(16.2, 23.2),
                 dateStr = "2022-07-11",
                 weatherCode = WeatherCode.OVERCAST
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(5.5, 21.3),
                 dateStr = "2022-07-12",
                 weatherCode = WeatherCode.SLIGHT_OR_MODERATE_THUNDERSTORM
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(0.8, 12.1),
                 dateStr = "2022-07-13",
                 weatherCode = WeatherCode.FOG
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(5.2, 18.3),
                 dateStr = "2022-07-14",
                 weatherCode = WeatherCode.MODERATE_RAIN_SHOWERS
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(14.6, 18.8),
                 dateStr = "2022-07-15",
                 weatherCode = WeatherCode.SLIGHT_RAIN_SHOWERS
             ),
-            WeatherForecast(
+            WeatherForecastMinMax(
                 temperatureMinMax = Pair(4.4, 15.6),
                 dateStr = "2022-07-16",
                 weatherCode = WeatherCode.MODERATE_RAIN
@@ -365,7 +365,7 @@ private fun WeeklyWeatherForecastCarouselPreview() {
         hasError = false
     )
 
-    WeeklyWeatherForecastCarousel(weeklyWeatherForecastSummaryViewState)
+    WeeklyWeatherForecastCarousel(weeklyWeatherForecastMinMaxSummaryViewState)
 }
 
 @Preview

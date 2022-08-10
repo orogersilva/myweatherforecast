@@ -2,7 +2,7 @@ package com.orogersilva.myweatherforecast.weekly.data.remote
 
 import com.orogersilva.myweatherforecast.data.domain.converter.WeatherForecastConverter
 import com.orogersilva.myweatherforecast.data.dto.DailyDataDto
-import com.orogersilva.myweatherforecast.data.dto.UnitDto
+import com.orogersilva.myweatherforecast.data.dto.DailyUnitDto
 import com.orogersilva.myweatherforecast.data.dto.WeeklyWeatherForecastDto
 import com.orogersilva.myweatherforecast.networking.api.MyWeatherForecastApiClient
 import com.orogersilva.myweatherforecast.networking.error.RemoteServiceIntegrationError
@@ -106,7 +106,7 @@ class WeeklyWeatherForecastRemoteDataSourceTest {
         // ASSERT
 
         assertEquals(
-            expected = WeatherForecastConverter.convertWeeklyWeatherForecastDtoToWeatherForecasts(
+            expected = WeatherForecastConverter.convertWeeklyWeatherForecastDtoToWeatherForecastsMinMax(
                 expectedResponse
             ),
             actual = response
@@ -158,7 +158,7 @@ class WeeklyWeatherForecastRemoteDataSourceTest {
                     63
                 )
             ),
-            unitDto = UnitDto(
+            dailyUnitDto = DailyUnitDto(
                 temperatureMin = "°C",
                 temperatureMax = "°C",
                 time = "iso8601",
