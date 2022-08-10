@@ -6,5 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface WeeklyWeatherForecastRepository {
 
-    fun getWeeklyForecast(latitude: Double, longitude: Double): Flow<Result<List<WeatherForecastMinMax>>>
+    fun getWeeklyForecast(
+        latitude: Double,
+        longitude: Double
+    ): Flow<Result<List<WeatherForecastMinMax>>>
 }

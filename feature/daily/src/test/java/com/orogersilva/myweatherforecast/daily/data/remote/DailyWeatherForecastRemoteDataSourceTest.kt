@@ -1,6 +1,6 @@
-package com.orogersilva.myweatherforecast.daily.remote
+package com.orogersilva.myweatherforecast.daily.data.remote
 
-import com.orogersilva.myweatherforecast.daily.source.DailyWeatherForecastRemoteDataSource
+import com.orogersilva.myweatherforecast.daily.data.source.DailyWeatherForecastRemoteDataSource
 import com.orogersilva.myweatherforecast.data.domain.converter.WeatherForecastConverter
 import com.orogersilva.myweatherforecast.data.dto.DailyWeatherForecastDto
 import com.orogersilva.myweatherforecast.data.dto.HourlyDailyDataDto

@@ -61,4 +61,5 @@ dependencies {
     testImplementation deps.coroutines.test
     testImplementation deps.junit.core
     testImplementation deps.kotlin.test
+    testImplementation deps.turbine.core
 }

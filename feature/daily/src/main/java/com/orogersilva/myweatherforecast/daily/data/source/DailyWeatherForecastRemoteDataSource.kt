@@ -1,4 +1,4 @@
-package com.orogersilva.myweatherforecast.daily.source
+package com.orogersilva.myweatherforecast.daily.data.source
 
 import com.orogersilva.myweatherforecast.data.domain.model.DailyWeatherForecast
 
