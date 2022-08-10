@@ -6,6 +6,7 @@ digraph {
   # Projects
 
   ":app" [fillcolor="#baffc9"];
+  ":feature:daily" [fillcolor="#baffc9"];
   ":feature:weekly" [fillcolor="#baffc9"];
   ":navigation" [fillcolor="#baffc9"];
   ":platform:core:data" [fillcolor="#baffc9"];
@@ -18,10 +19,15 @@ digraph {
   # Dependencies
 
   ":app" -> ":app"
+  ":app" -> ":feature:daily" [style=dotted]
   ":app" -> ":feature:weekly" [style=dotted]
   ":app" -> ":navigation" [style=dotted]
   ":navigation" -> ":navigation"
   ":navigation" -> ":feature:weekly" [style=dotted]
+  ":feature:daily" -> ":platform:core:ui"
+  ":feature:daily" -> ":feature:daily"
+  ":feature:daily" -> ":platform:core:networking" [style=dotted]
+  ":feature:daily" -> ":platform:testing" [style=dotted]
   ":feature:weekly" -> ":platform:core:ui"
   ":feature:weekly" -> ":feature:weekly"
   ":feature:weekly" -> ":platform:core:networking" [style=dotted]
