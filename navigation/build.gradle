@@ -44,6 +44,7 @@ android {
 
 dependencies {
 
+    implementation project(':feature:daily')
     implementation project(':feature:weekly')
 
     implementation deps.android.compose.ui

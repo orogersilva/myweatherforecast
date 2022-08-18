@@ -36,7 +36,7 @@ enum class WeatherCode(
     val code: Int,
     val backgroundColor: Color,
     val textColor: Color,
-    @StringRes val weatherDescription: Int
+    @StringRes val weatherDescriptionStrId: Int
 ) {
     CLEAR_SKY(0, Blue40, Color.White, R.string.clear_sky),
     MAINLY_CLEAR(1, Blue50, Color.Black, R.string.mainly_clear),

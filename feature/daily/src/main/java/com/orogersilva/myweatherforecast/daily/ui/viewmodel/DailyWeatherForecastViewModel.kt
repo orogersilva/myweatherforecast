@@ -54,6 +54,7 @@ class DailyWeatherForecastViewModel @Inject constructor(
                             } else {
                                 null
                             },
+                            isRequiredInitialDailyWeatherForecastLoad = false,
                             isLoadingDailyWeatherForecast = false,
                             hasError = dailyWeatherForecast !is Result.Success
                         )
@@ -64,6 +65,7 @@ class DailyWeatherForecastViewModel @Inject constructor(
 
     data class DailyWeatherForecastViewState(
         val dailyWeatherForecast: DailyWeatherForecast? = null,
+        val isRequiredInitialDailyWeatherForecastLoad: Boolean = true,
         val isLoadingDailyWeatherForecast: Boolean = false,
         val hasError: Boolean = false
     )

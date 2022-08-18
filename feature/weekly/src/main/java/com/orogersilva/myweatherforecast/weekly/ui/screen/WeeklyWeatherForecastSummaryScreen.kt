@@ -2,6 +2,7 @@ package com.orogersilva.myweatherforecast.weekly.ui.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -55,7 +56,8 @@ import java.time.LocalDate
 @Composable
 fun RequestLastLocationPermissionForWeeklyWeatherForecast(
     viewModel: WeeklyForecastSummaryViewModel,
-    fusedLocationClient: FusedLocationProviderClient
+    fusedLocationClient: FusedLocationProviderClient,
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
 
     val locationPermissionState = rememberPermissionState(
@@ -65,7 +67,11 @@ fun RequestLastLocationPermissionForWeeklyWeatherForecast(
     when (locationPermissionState.status) {
 
         is PermissionStatus.Granted -> {
-            WeeklyWeatherForecastSummaryScreen(viewModel, fusedLocationClient)
+            WeeklyWeatherForecastSummaryScreen(
+                viewModel,
+                fusedLocationClient,
+                onNavigateToDailyForecast
+            )
         }
 
         is PermissionStatus.Denied -> {
@@ -84,7 +90,8 @@ fun RequestLastLocationPermissionForWeeklyWeatherForecast(
 @Composable
 private fun WeeklyWeatherForecastSummaryScreen(
     viewModel: WeeklyForecastSummaryViewModel,
-    fusedLocationClient: FusedLocationProviderClient
+    fusedLocationClient: FusedLocationProviderClient,
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
 
     val uiState: WeeklyWeatherForecastSummaryViewState by viewModel.uiState.collectAsState()
@@ -95,7 +102,8 @@ private fun WeeklyWeatherForecastSummaryScreen(
         WeatherForecastOperationStateContent(
             viewModel,
             uiState,
-            fusedLocationClient
+            fusedLocationClient,
+            onNavigateToDailyForecast
         )
     }
 }
@@ -105,12 +113,16 @@ private fun WeeklyWeatherForecastSummaryScreen(
 private fun WeatherForecastOperationStateContent(
     viewModel: WeeklyForecastSummaryViewModel,
     uiState: WeeklyWeatherForecastSummaryViewState,
-    fusedLocationClient: FusedLocationProviderClient
+    fusedLocationClient: FusedLocationProviderClient,
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
+
+    val latitude = -29.7509082
+    val longitude = -51.2131746
 
     if (uiState.isRequiredInitialWeeklyWeatherForecastSummaryLoad) {
 
-        viewModel.loadWeeklyWeatherForecastSummary(-29.7509082, -51.2131746)
+        viewModel.loadWeeklyWeatherForecastSummary(latitude, longitude)
 
         /*fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
@@ -131,7 +143,10 @@ private fun WeatherForecastOperationStateContent(
         } else {
             WeatherForecastMainContent(
                 viewModel = viewModel,
-                uiState = uiState
+                uiState = uiState,
+                latitude = latitude,
+                longitude = longitude,
+                onNavigateToDailyForecast = onNavigateToDailyForecast
             )
         }
     }
@@ -140,7 +155,10 @@ private fun WeatherForecastOperationStateContent(
 @Composable
 private fun WeatherForecastMainContent(
     viewModel: WeeklyForecastSummaryViewModel,
-    uiState: WeeklyWeatherForecastSummaryViewState
+    uiState: WeeklyWeatherForecastSummaryViewState,
+    latitude: Double,
+    longitude: Double,
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
     SwipeRefresh(
         state = rememberSwipeRefreshState(
@@ -157,14 +175,22 @@ private fun WeatherForecastMainContent(
                 .background(Orange90),
             verticalArrangement = Arrangement.Center
         ) {
-            WeeklyWeatherForecastCarousel(uiState = uiState)
+            WeeklyWeatherForecastCarousel(
+                uiState = uiState,
+                latitude = latitude,
+                longitude = longitude,
+                onNavigateToDailyForecast = onNavigateToDailyForecast
+            )
         }
     }
 }
 
 @Composable
 private fun WeeklyWeatherForecastCarousel(
-    uiState: WeeklyWeatherForecastSummaryViewState
+    uiState: WeeklyWeatherForecastSummaryViewState,
+    latitude: Double,
+    longitude: Double,
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -178,7 +204,10 @@ private fun WeeklyWeatherForecastCarousel(
                 min = weatherForecast.temperatureMinMax.first,
                 max = weatherForecast.temperatureMinMax.second,
                 backgroundColor = weatherForecast.weatherCode.backgroundColor,
-                textColor = weatherForecast.weatherCode.textColor
+                textColor = weatherForecast.weatherCode.textColor,
+                latitude = latitude,
+                longitude = longitude,
+                onNavigateToDailyForecast = onNavigateToDailyForecast
             )
         }
     }
@@ -191,7 +220,10 @@ private fun DayWeatherContent(
     min: Double,
     max: Double,
     backgroundColor: Color,
-    textColor: Color
+    textColor: Color,
+    latitude: Double,
+    longitude: Double,
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
 
     val weatherLocalDate = LocalDate.parse(dateStr)
@@ -201,7 +233,10 @@ private fun DayWeatherContent(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .size(200.dp, 200.dp)
-            .padding(16.dp),
+            .padding(16.dp)
+            .clickable {
+                onNavigateToDailyForecast.invoke(latitude, longitude, dateStr, dateStr)
+            },
         elevation = CardDefaults
             .cardElevation(10.dp),
         colors = CardDefaults
@@ -314,7 +349,10 @@ private fun WeatherForecastMainContentPreview() {
                     flowOf(Result.Success(weatherForecasts))
             }
         ),
-        uiState = weeklyWeatherForecastSummaryViewState
+        uiState = weeklyWeatherForecastSummaryViewState,
+        latitude = -29.7509082,
+        longitude = -51.2131746,
+        onNavigateToDailyForecast = { _, _, _, _ -> }
     )
 }
 
@@ -365,7 +403,12 @@ private fun WeeklyWeatherForecastCarouselPreview() {
         hasError = false
     )
 
-    WeeklyWeatherForecastCarousel(weeklyWeatherForecastMinMaxSummaryViewState)
+    WeeklyWeatherForecastCarousel(
+        weeklyWeatherForecastMinMaxSummaryViewState,
+        -29.7509082,
+        -51.2131746,
+        onNavigateToDailyForecast = { _, _, _, _ -> }
+    )
 }
 
 @Preview
@@ -376,6 +419,9 @@ private fun DayWeatherContentPreview() {
         min = 0.9,
         max = 23.7,
         backgroundColor = Blue40,
-        textColor = Color.White
+        textColor = Color.White,
+        latitude = -29.7509082,
+        longitude = -51.2131746,
+        onNavigateToDailyForecast = { _, _, _, _ -> }
     )
 }

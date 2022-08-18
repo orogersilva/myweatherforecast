@@ -18,7 +18,7 @@ ext.versions = [
         androidCustomViewCoreVersion: '1.2.0-alpha01',
         androidCustomViewPoolingContainerVersion: '1.0.0-rc01',
         androidDataStoreVersion: '1.0.0',
-        androidGradlePluginVersion: '7.2.1',
+        androidGradlePluginVersion: '7.2.2',
         androidHiltNavigationCompose: '1.0.0',
         androidKtxVersion: '1.7.0',
         androidLifecycleVersion: '2.5.0',
