@@ -7,13 +7,13 @@ import retrofit2.http.Query
 
 interface MyWeatherForecastApiClient {
 
-    @GET("forecast?daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=UTC")
+    @GET("forecast?daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto")
     suspend fun getWeeklyWeatherForecast(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double
     ): WeeklyWeatherForecastDto
 
-    @GET("forecast?hourly=temperature_2m&daily=weathercode&timezone=UTC")
+    @GET("forecast?hourly=temperature_2m&daily=weathercode&timezone=auto")
     suspend fun getDailyWeatherForecast(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
