@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="weekly_location_permission_dialog_confirm_button_label">I got it</string>
+    <string name="weekly_location_permission_dialog_description">Location permission is required to weather forecast to be available. Please grant the permission.</string>
+    <string name="weekly_location_permission_dialog_rationale_description">Your device location is required to show the weather forecast from where you are.</string>
+    <string name="weekly_location_permission_dialog_title">Do you want to show weather forecast?</string>
+
+</resources>

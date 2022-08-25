@@ -47,6 +47,8 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
                             },
                             isRequiredInitialWeeklyWeatherForecastSummaryLoad = false,
                             isLoadingWeeklyWeatherForecastSummary = false,
+                            lastLatitude = latitude,
+                            lastLongitude = longitude,
                             hasError = weatherForecasts !is Result.Success
                         )
                     }
@@ -58,6 +60,8 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
         val weatherForecasts: MutableList<WeatherForecastMinMax> = mutableListOf(),
         val isRequiredInitialWeeklyWeatherForecastSummaryLoad: Boolean = true,
         val isLoadingWeeklyWeatherForecastSummary: Boolean = false,
+        val lastLatitude: Double = 0.0,
+        val lastLongitude: Double = 0.0,
         val hasError: Boolean = false
     )
 }
