@@ -11,6 +11,7 @@ digraph {
   ":navigation" [fillcolor="#baffc9"];
   ":platform:core:data" [fillcolor="#baffc9"];
   ":platform:core:networking" [fillcolor="#baffc9"];
+  ":platform:core:system" [fillcolor="#baffc9"];
   ":platform:core:ui" [fillcolor="#baffc9"];
   ":platform:testing" [fillcolor="#baffc9"];
 
@@ -32,6 +33,7 @@ digraph {
   ":feature:weekly" -> ":platform:core:ui"
   ":feature:weekly" -> ":feature:weekly"
   ":feature:weekly" -> ":platform:core:networking" [style=dotted]
+  ":feature:weekly" -> ":platform:core:system" [style=dotted]
   ":feature:weekly" -> ":platform:testing" [style=dotted]
   ":platform:testing" -> ":platform:testing"
   ":platform:testing" -> ":platform:core:networking" [style=dotted]
@@ -39,5 +41,6 @@ digraph {
   ":platform:core:data" -> ":platform:core:ui" [style=dotted]
   ":platform:core:networking" -> ":platform:core:data"
   ":platform:core:networking" -> ":platform:core:networking"
+  ":platform:core:system" -> ":platform:core:system"
   ":platform:core:ui" -> ":platform:core:ui"
 }
