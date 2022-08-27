@@ -50,6 +50,7 @@ android {
 dependencies {
 
     implementation project(':platform:core:networking')
+    implementation project(':platform:core:system')
     api project(':platform:core:ui')
 
     implementation deps.android.lifecycle.viewModel

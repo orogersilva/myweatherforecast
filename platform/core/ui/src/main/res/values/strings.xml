@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="no_internet_dialog_description">There is no internet. Please, verify your wifi or mobile data are enabled.</string>
+    <string name="no_internet_dialog_title">Internet</string>
+
+</resources>

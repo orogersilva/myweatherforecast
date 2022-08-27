@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.orogersilva.myweatherforecast.ui.theme.PurpleGrey40
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,69 +35,73 @@ fun GenericDialog(
     confirmLabel: String,
     onConfirm: () -> Unit
 ) {
-
-    Card(
-        shape = RoundedCornerShape(10.dp),
-        modifier = Modifier.padding(10.dp),
-        elevation = CardDefaults
-            .cardElevation(8.dp)
+    Dialog(
+        onDismissRequest = { }
     ) {
-        Column(
-            modifier = Modifier
-                .background(Color.White)
-                .padding(16.dp)
+        Card(
+            shape = RoundedCornerShape(10.dp),
+            modifier = Modifier.padding(10.dp),
+            elevation = CardDefaults
+                .cardElevation(8.dp)
         ) {
-            Text(
-                text = title,
-                textAlign = TextAlign.Center,
-                fontSize = 20.sp,
-                color = Color.Black,
+            Column(
                 modifier = Modifier
-                    .padding(5.dp)
-                    .fillMaxWidth(),
-                style = MaterialTheme.typography.labelLarge,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Text(
-                text = description,
-                textAlign = TextAlign.Center,
-                fontSize = 16.sp,
-                color = Color.Black,
-                modifier = Modifier
-                    .padding(
-                        top = 10.dp,
-                        start = 25.dp,
-                        end = 25.dp
-                    ),
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            TextButton(
-                onClick = { onDismiss.invoke() }
+                    .background(Color.White)
+                    .padding(16.dp)
             ) {
                 Text(
-                    text = dismissLabel,
-                    fontWeight = FontWeight.Bold,
-                    color = PurpleGrey40,
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)
+                    text = title,
+                    textAlign = TextAlign.Center,
+                    fontSize = 20.sp,
+                    color = Color.Black,
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .fillMaxWidth(),
+                    style = MaterialTheme.typography.labelLarge,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = description,
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = 10.dp,
+                            start = 25.dp,
+                            end = 25.dp
+                        ),
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
-            TextButton(
-                onClick = { onConfirm.invoke() }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Text(
-                    text = confirmLabel,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color.Black,
-                    modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)
-                )
+                TextButton(
+                    onClick = { onDismiss.invoke() }
+                ) {
+                    Text(
+                        text = dismissLabel,
+                        fontWeight = FontWeight.Bold,
+                        color = PurpleGrey40,
+                        modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)
+                    )
+                }
+                TextButton(
+                    onClick = { onConfirm.invoke() }
+                ) {
+                    Text(
+                        text = confirmLabel,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.Black,
+                        modifier = Modifier.padding(top = 5.dp, bottom = 5.dp)
+                    )
+                }
             }
         }
     }

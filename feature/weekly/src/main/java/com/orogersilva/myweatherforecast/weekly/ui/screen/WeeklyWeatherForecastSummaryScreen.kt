@@ -63,6 +63,10 @@ import com.google.android.gms.location.SettingsClient
 import com.google.android.gms.tasks.Task
 import com.orogersilva.myweatherforecast.data.domain.model.WeatherForecastMinMax
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
+import com.orogersilva.myweatherforecast.extension.getActivity
+import com.orogersilva.myweatherforecast.system.ConnectivityManager
+import com.orogersilva.myweatherforecast.ui.dialog.GenericDialog
+import com.orogersilva.myweatherforecast.ui.dialog.NoConnectivityDialog
 import com.orogersilva.myweatherforecast.ui.screen.LoadingSubScreen
 import com.orogersilva.myweatherforecast.ui.theme.Blue40
 import com.orogersilva.myweatherforecast.ui.theme.Orange90
@@ -71,6 +75,7 @@ import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSumma
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel.WeeklyWeatherForecastSummaryViewState
 import java.text.DecimalFormat
 import java.time.LocalDate
+import kotlin.system.exitProcess
 
 @SuppressLint("MissingPermission")
 @OptIn(ExperimentalPermissionsApi::class)
@@ -100,8 +105,15 @@ fun RequestLastLocationPermissionForWeeklyWeatherForecast(
             isGrantedCoarseLocation &&
             isGrantedFineLocation
     }
+
+    val context = LocalContext.current
+
     var shouldShowCheckLocationSetting by remember { mutableStateOf(false) }
     var shouldShowWeeklyWeatherForecastSummaryScreen by remember { mutableStateOf(false) }
+    var isRevokedLocationSetting by remember { mutableStateOf(false) }
+    var isAvailableConnectivityState by remember {
+        mutableStateOf(ConnectivityManager.isAvailableInternet(context))
+    }
 
     val locationRequest = LocationRequest.create().apply {
         interval = 10000
@@ -124,18 +136,32 @@ fun RequestLastLocationPermissionForWeeklyWeatherForecast(
                 null
             )
         } else {
-            TODO("Handle denied location settings request.")
+            isRevokedLocationSetting = true
         }
     }
 
-    val context = LocalContext.current
-
-    if (shouldShowWeeklyWeatherForecastSummaryScreen) {
+    if (!isAvailableConnectivityState) {
+        NoConnectivityDialog(
+            dismissLabel = stringResource(id = R.string.weekly_no_internet_dialog_dismiss_label),
+            onDismiss = {
+                context.getActivity()?.finishAffinity()
+                exitProcess(0)
+            },
+            confirmLabel = stringResource(id = R.string.weekly_no_internet_dialog_confirm_label),
+            onConfirm = {
+                isAvailableConnectivityState = ConnectivityManager.isAvailableInternet(context)
+            }
+        )
+    } else if (shouldShowWeeklyWeatherForecastSummaryScreen) {
         WeeklyWeatherForecastSummaryScreen(
             viewModel = viewModel,
             fusedLocationClient = fusedLocationClient,
             onNavigateToDailyForecast = onNavigateToDailyForecast
         )
+    } else if (isRevokedLocationSetting) {
+        RevokedLocationSettingAlert {
+            isRevokedLocationSetting = false
+        }
     } else if (shouldShowCheckLocationSetting) {
         CheckLocationSetting(
             context = context,
@@ -317,6 +343,31 @@ private fun CheckLocationSetting(
     }
 }
 
+@Composable
+private fun RevokedLocationSettingAlert(
+    onRetryLocationSetting: () -> Unit
+) {
+    val context = LocalContext.current
+
+    GenericDialog(
+        title = stringResource(id = R.string.weekly_revoked_location_setting_dialog_title),
+        description = stringResource(
+            id = R.string.weekly_revoked_location_setting_dialog_description
+        ),
+        dismissLabel = stringResource(
+            id = R.string.weekly_revoked_location_setting_dialog_dismiss_option
+        ),
+        onDismiss = {
+            context.getActivity()?.finishAffinity()
+            exitProcess(0)
+        },
+        confirmLabel = stringResource(
+            id = R.string.weekly_revoked_location_setting_dialog_confirm_option
+        ),
+        onConfirm = { onRetryLocationSetting.invoke() }
+    )
+}
+
 @SuppressLint("MissingPermission")
 @Composable
 private fun WeatherForecastMainContent(
@@ -463,6 +514,14 @@ private fun DayWeatherContent(
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun RevokedLocationSettingAlertPreview() {
+    RevokedLocationSettingAlert(
+        onRetryLocationSetting = { }
+    )
 }
 
 /*@Preview

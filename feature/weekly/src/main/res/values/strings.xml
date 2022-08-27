@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExtraTranslation">
 
     <string name="weekly_location_permission_dialog_confirm_button_label">I got it</string>
     <string name="weekly_location_permission_dialog_description">Location permission is required to weather forecast to be available. Please grant the permission.</string>
     <string name="weekly_location_permission_dialog_rationale_description">Your device location is required to show the weather forecast from where you are.</string>
     <string name="weekly_location_permission_dialog_title">Do you want to show weather forecast?</string>
+
+    <string name="weekly_no_internet_dialog_confirm_label">Try again</string>
+    <string name="weekly_no_internet_dialog_dismiss_label">Quit</string>
+
+    <string name="weekly_revoked_location_setting_dialog_confirm_option">Enable</string>
+    <string name="weekly_revoked_location_setting_dialog_description">It takes a little to get the weather forecast next to you. You must enable the device location.</string>
+    <string name="weekly_revoked_location_setting_dialog_dismiss_option">Quit</string>
+    <string name="weekly_revoked_location_setting_dialog_title">Location access</string>
 
 </resources>
