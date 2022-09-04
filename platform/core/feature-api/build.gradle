@@ -1,7 +1,5 @@
 plugins {
     id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -46,16 +44,7 @@ android {
 
 dependencies {
 
-    api deps.android.activity.activityCompose
-    api deps.android.compose.material3
     api deps.android.compose.ui
-    debugApi deps.android.compose.uiTooling
-    api deps.android.compose.uiToolingPreview
-    debugApi deps.android.customView.core
-    debugApi deps.android.customView.poolingContainer
-    api deps.android.ktx.core
-
-    implementation deps.dagger.hilt.android
-    kapt deps.dagger.hilt.compiler
-    api deps.googlePlayServices.location
+    api deps.android.hilt.navigationCompose
+    api deps.android.compose.navigation
 }

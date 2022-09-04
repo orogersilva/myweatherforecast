@@ -14,7 +14,7 @@ android {
         minSdk buildConfig.minSdk
         targetSdk buildConfig.targetSdk
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.orogersilva.myweatherforecast.testing.runner.MyWeatherForecastTestRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -49,11 +49,11 @@ android {
 
 dependencies {
 
-    implementation project(':platform:core:networking')
-    implementation project(':platform:core:system')
-    api project(':platform:core:ui')
+    implementation project(':feature:daily-api')
+    api project(':feature:weekly-api')
 
     implementation deps.android.lifecycle.viewModel
+    debugImplementation deps.android.test.composeManifest
 
     implementation deps.accompanist.permissions
     implementation deps.accompanist.swipeRefresh
@@ -68,4 +68,8 @@ dependencies {
     testImplementation deps.junit.core
     testImplementation deps.kotlin.test
     testImplementation deps.turbine.core
+
+    androidTestImplementation project(':platform:testing')
+
+    kaptAndroidTest deps.dagger.hilt.androidCompiler
 }

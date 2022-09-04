@@ -38,6 +38,9 @@ dependencies {
 
     implementation project(':platform:core:networking')
 
+    api deps.android.activity.activityCompose
+    api deps.android.test.compose
+    api deps.android.test.hilt
     implementation deps.android.test.runner
 
     implementation deps.junit.core
