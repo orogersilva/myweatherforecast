@@ -7,9 +7,11 @@ digraph {
 
   ":app" [fillcolor="#baffc9"];
   ":feature:daily" [fillcolor="#baffc9"];
+  ":feature:daily-api" [fillcolor="#baffc9"];
   ":feature:weekly" [fillcolor="#baffc9"];
-  ":navigation" [fillcolor="#baffc9"];
+  ":feature:weekly-api" [fillcolor="#baffc9"];
   ":platform:core:data" [fillcolor="#baffc9"];
+  ":platform:core:feature-api" [fillcolor="#baffc9"];
   ":platform:core:networking" [fillcolor="#baffc9"];
   ":platform:core:system" [fillcolor="#baffc9"];
   ":platform:core:ui" [fillcolor="#baffc9"];
@@ -22,23 +24,27 @@ digraph {
   ":app" -> ":app"
   ":app" -> ":feature:daily" [style=dotted]
   ":app" -> ":feature:weekly" [style=dotted]
-  ":app" -> ":navigation" [style=dotted]
-  ":navigation" -> ":navigation"
-  ":navigation" -> ":feature:daily" [style=dotted]
-  ":navigation" -> ":feature:weekly" [style=dotted]
-  ":feature:daily" -> ":platform:core:ui"
+  ":feature:daily" -> ":platform:testing" [style=dotted, style=dotted]
+  ":feature:daily" -> ":feature:daily-api"
   ":feature:daily" -> ":feature:daily"
-  ":feature:daily" -> ":platform:core:networking" [style=dotted]
-  ":feature:daily" -> ":platform:testing" [style=dotted]
-  ":feature:weekly" -> ":platform:core:ui"
+  ":feature:daily-api" -> ":platform:core:feature-api"
+  ":feature:daily-api" -> ":platform:core:networking"
+  ":feature:daily-api" -> ":platform:core:ui"
+  ":feature:daily-api" -> ":feature:daily-api"
+  ":feature:weekly" -> ":platform:testing" [style=dotted, style=dotted]
+  ":feature:weekly" -> ":feature:weekly-api"
   ":feature:weekly" -> ":feature:weekly"
-  ":feature:weekly" -> ":platform:core:networking" [style=dotted]
-  ":feature:weekly" -> ":platform:core:system" [style=dotted]
-  ":feature:weekly" -> ":platform:testing" [style=dotted]
+  ":feature:weekly" -> ":feature:daily-api" [style=dotted]
+  ":feature:weekly-api" -> ":platform:core:feature-api"
+  ":feature:weekly-api" -> ":platform:core:networking"
+  ":feature:weekly-api" -> ":platform:core:system"
+  ":feature:weekly-api" -> ":platform:core:ui"
+  ":feature:weekly-api" -> ":feature:weekly-api"
   ":platform:testing" -> ":platform:testing"
   ":platform:testing" -> ":platform:core:networking" [style=dotted]
   ":platform:core:data" -> ":platform:core:data"
   ":platform:core:data" -> ":platform:core:ui" [style=dotted]
+  ":platform:core:feature-api" -> ":platform:core:feature-api"
   ":platform:core:networking" -> ":platform:core:data"
   ":platform:core:networking" -> ":platform:core:networking"
   ":platform:core:system" -> ":platform:core:system"
