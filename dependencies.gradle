@@ -1,7 +1,7 @@
 ext.buildConfig = [
-        'compileSdk': 32,
+        'compileSdk': 33,
         'minSdk': 21,
-        'targetSdk': 32
+        'targetSdk': 33
 ]
 
 ext.appVersion = [
@@ -11,7 +11,7 @@ ext.appVersion = [
 
 ext.versions = [
         accompanistVersion: '0.25.0',
-        androidActivityVersion: '1.4.0',
+        androidActivityVersion: '1.6.0-rc01',
         androidComposeVersion: '1.1.1',
         androidComposeCompilerVersion: '1.2.0',
         androidComposeMaterial3Version: '1.0.0-alpha14',
@@ -21,7 +21,7 @@ ext.versions = [
         androidGradlePluginVersion: '7.2.2',
         androidHiltNavigationCompose: '1.0.0',
         androidKtxVersion: '1.7.0',
-        androidLifecycleVersion: '2.5.0',
+        androidLifecycleVersion: '2.5.1',
         androidNavigationCompose: '2.5.1',
         androidTestCoreVersion: '1.4.0',
         androidTestRunnerVersion: '1.4.0',
@@ -72,7 +72,7 @@ ext.deps = [
                         'core': "androidx.core:core-ktx:${versions.androidKtxVersion}"
                 ],
                 'lifecycle': [
-                        'viewModel': "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidLifecycleVersion}"
+                        'viewModelKtx': "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidLifecycleVersion}"
                 ],
                 'test': [
                         'compose': "androidx.compose.ui:ui-test-junit4:${versions.androidComposeVersion}",

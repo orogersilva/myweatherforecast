@@ -52,7 +52,7 @@ dependencies {
     implementation project(':feature:daily-api')
     api project(':feature:weekly-api')
 
-    implementation deps.android.lifecycle.viewModel
+    implementation deps.android.lifecycle.viewModelKtx
     debugImplementation deps.android.test.composeManifest
 
     implementation deps.accompanist.permissions

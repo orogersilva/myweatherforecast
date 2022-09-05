@@ -49,7 +49,7 @@ dependencies {
 
     api project(':feature:daily-api')
 
-    implementation deps.android.lifecycle.viewModel
+    implementation deps.android.lifecycle.viewModelKtx
     debugImplementation deps.android.test.composeManifest
 
     implementation deps.coroutines.android
