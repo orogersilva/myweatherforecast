@@ -482,7 +482,7 @@ private fun DayWeatherContent(
                     .fillMaxWidth()
                     .wrapContentHeight(),
                 textAlign = TextAlign.Center,
-                fontSize = 24.sp,
+                fontSize = 18.sp,
             )
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -598,37 +598,37 @@ private fun WeeklyWeatherForecastCarouselPreview() {
         weatherForecasts = mutableListOf(
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(12.9, 20.5),
-                dateStr = "2022-07-10",
+                dateStr = "2022-09-10",
                 weatherCode = WeatherCode.OVERCAST
             ),
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(16.2, 23.2),
-                dateStr = "2022-07-11",
+                dateStr = "2022-09-11",
                 weatherCode = WeatherCode.OVERCAST
             ),
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(5.5, 21.3),
-                dateStr = "2022-07-12",
+                dateStr = "2022-09-12",
                 weatherCode = WeatherCode.SLIGHT_OR_MODERATE_THUNDERSTORM
             ),
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(0.8, 12.1),
-                dateStr = "2022-07-13",
+                dateStr = "2022-09-13",
                 weatherCode = WeatherCode.FOG
             ),
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(5.2, 18.3),
-                dateStr = "2022-07-14",
+                dateStr = "2022-09-14",
                 weatherCode = WeatherCode.MODERATE_RAIN_SHOWERS
             ),
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(14.6, 18.8),
-                dateStr = "2022-07-15",
+                dateStr = "2022-09-15",
                 weatherCode = WeatherCode.SLIGHT_RAIN_SHOWERS
             ),
             WeatherForecastMinMax(
                 temperatureMinMax = Pair(4.4, 15.6),
-                dateStr = "2022-07-16",
+                dateStr = "2022-09-16",
                 weatherCode = WeatherCode.MODERATE_RAIN
             )
         ),
@@ -649,7 +649,7 @@ private fun WeeklyWeatherForecastCarouselPreview() {
 @Composable
 private fun DayWeatherContentPreview() {
     DayWeatherContent(
-        dateStr = "2022-07-25",
+        dateStr = "2022-09-25",
         min = 0.9,
         max = 23.7,
         backgroundColor = Blue40,
