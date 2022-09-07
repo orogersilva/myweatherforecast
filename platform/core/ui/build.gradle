@@ -55,6 +55,7 @@ dependencies {
     debugApi deps.android.customView.poolingContainer
     api deps.android.ktx.core
 
+    api deps.accompanist.systemUiController
     implementation deps.dagger.hilt.android
     kapt deps.dagger.hilt.compiler
     api deps.googlePlayServices.location

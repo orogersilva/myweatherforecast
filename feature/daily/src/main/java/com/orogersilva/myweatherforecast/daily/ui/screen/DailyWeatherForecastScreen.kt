@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.graphics.PointF
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -36,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.orogersilva.myweatherforecast.daily.ui.viewmodel.DailyWeatherForecastViewModel
 import com.orogersilva.myweatherforecast.daily.ui.viewmodel.DailyWeatherForecastViewModel.DailyWeatherForecastViewState
 import com.orogersilva.myweatherforecast.data.domain.model.DailyWeatherForecast
@@ -97,6 +100,17 @@ private fun DailyWeatherForecastOperationStateContent(
 private fun DailyWeatherForecastMainContent(
     uiState: DailyWeatherForecastViewState
 ) {
+    val systemUiController = rememberSystemUiController()
+    val useDarkIcons = !isSystemInDarkTheme()
+
+    DisposableEffect(systemUiController, useDarkIcons) {
+        systemUiController.setSystemBarsColor(
+            color = requireNotNull(uiState.dailyWeatherForecast?.weatherCode?.backgroundColor),
+            darkIcons = useDarkIcons
+        )
+
+        onDispose {}
+    }
 
     var weatherDescription = ""
     var screenBackgroundColor: Color = Orange90

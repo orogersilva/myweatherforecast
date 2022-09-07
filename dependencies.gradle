@@ -10,7 +10,7 @@ ext.appVersion = [
 ]
 
 ext.versions = [
-        accompanistVersion: '0.25.0',
+        accompanistVersion: '0.25.1',
         androidActivityVersion: '1.6.0-rc01',
         androidComposeVersion: '1.1.1',
         androidComposeCompilerVersion: '1.2.0',
@@ -46,7 +46,8 @@ ext.versions = [
 ext.deps = [
         'accompanist': [
                 'permissions': "com.google.accompanist:accompanist-permissions:${versions.accompanistVersion}",
-                'swipeRefresh': "com.google.accompanist:accompanist-swiperefresh:${versions.accompanistVersion}"
+                'swipeRefresh': "com.google.accompanist:accompanist-swiperefresh:${versions.accompanistVersion}",
+                'systemUiController': "com.google.accompanist:accompanist-systemuicontroller:${versions.accompanistVersion}"
         ],
         'android': [
                 'activity': [

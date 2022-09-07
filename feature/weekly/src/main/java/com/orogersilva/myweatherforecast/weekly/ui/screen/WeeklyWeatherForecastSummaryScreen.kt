@@ -10,6 +10,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,6 +31,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -50,6 +52,7 @@ import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -260,6 +263,17 @@ private fun WeeklyWeatherForecastSummaryScreen(
     fusedLocationClient: FusedLocationProviderClient,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
+    val systemUiController = rememberSystemUiController()
+    val useDarkIcons = !isSystemInDarkTheme()
+
+    DisposableEffect(systemUiController, useDarkIcons) {
+        systemUiController.setSystemBarsColor(
+            color = Orange90,
+            darkIcons = useDarkIcons
+        )
+
+        onDispose {}
+    }
 
     val uiState: WeeklyWeatherForecastSummaryViewState by viewModel.uiState.collectAsState()
 
@@ -376,6 +390,7 @@ private fun WeatherForecastMainContent(
     fusedLocationClient: FusedLocationProviderClient,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
+
     SwipeRefresh(
         state = rememberSwipeRefreshState(
             isRefreshing = uiState.isLoadingWeeklyWeatherForecastSummary
