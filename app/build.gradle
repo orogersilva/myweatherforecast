@@ -113,5 +113,6 @@ dependencies {
     implementation deps.dagger.hilt.android
     kapt deps.dagger.hilt.compiler
     implementation deps.googlePlayServices.location
+    debugImplementation deps.leakCanary.android
     implementation deps.timber.core
 }

@@ -34,6 +34,7 @@ ext.versions = [
         junitVersion: '4.13.2',
         kotlinSerializationVersion: '1.3.3',
         kotlinVersion: '1.7.0',
+        leakCanaryVersion: '2.9.1',
         moshiVersion: '1.13.0',
         okhttpVersion: '4.9.3',
         openJdkOlderRuntimesVersion: '1.1.6',
@@ -112,6 +113,9 @@ ext.deps = [
         'kotlin': [
                 'serialization': "org.jetbrains.kotlinx:kotlinx-serialization-core:${versions.kotlinSerializationVersion}",
                 'test': "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlinVersion}"
+        ],
+        'leakCanary': [
+                'android': "com.squareup.leakcanary:leakcanary-android:${versions.leakCanaryVersion}"
         ],
         'moshi': [
                 'core': "com.squareup.moshi:moshi:${versions.moshiVersion}",
