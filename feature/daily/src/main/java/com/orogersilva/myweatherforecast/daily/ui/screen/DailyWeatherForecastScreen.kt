@@ -160,6 +160,9 @@ private fun DailyWeatherForecastMainContent(
                 DailyTemperatureChart(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(
+                            horizontal = 16.dp
+                        )
                         .height(400.dp),
                     xValues = (1..24).toList(),
                     yValues = (1..8).map { i -> i * 5 },
