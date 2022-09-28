@@ -33,12 +33,10 @@ class DailyWeatherForecastScreenTest {
     lateinit var fakeDailyWeatherForecastRepository: FakeDailyWeatherForecastRepository
 
     @Before fun setUp() {
-
         hiltTestRule.inject()
     }
 
     @Test fun dailyWeatherForecastScreen_whenItIsDetailedWeatherForecastRequestedIsOk_thenShowDailyWeatherForecast() {
-
         // ARRANGE
 
         val dailyWeatherForecast = createDailyWeatherForecast()

@@ -30,7 +30,6 @@ class DailyWeatherForecastViewModel @Inject constructor(
         startDateStr: String,
         endDateStr: String
     ) {
-
         _uiState.update { currentUiState ->
             currentUiState.copy(
                 isLoadingDailyWeatherForecast = true
@@ -38,7 +37,6 @@ class DailyWeatherForecastViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-
             dailyWeatherForecastRepository.getDailyForecast(
                 latitude,
                 longitude,

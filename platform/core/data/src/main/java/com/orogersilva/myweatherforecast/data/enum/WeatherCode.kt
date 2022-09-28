@@ -64,15 +64,21 @@ enum class WeatherCode(
     SLIGHT_SNOW_SHOWERS(85, SnowBlue80, Color.White, R.string.slight_snow_showers),
     HEAVY_SNOW_SHOWERS(86, SnowBlue45, Color.White, R.string.heavy_snow_showers),
     SLIGHT_OR_MODERATE_THUNDERSTORM(
-        95, Blue10,
-        Color.White, R.string.slight_or_moderate_thunderstorm
+        95,
+        Blue10,
+        Color.White,
+        R.string.slight_or_moderate_thunderstorm
     ),
     THUNDERSTORM_WITH_SLIGHT_HAIL(
-        96, Gray40, Color.White,
+        96,
+        Gray40,
+        Color.White,
         R.string.thunderstorm_with_slight_hail
     ),
     THUNDERSTORM_WITH_HEAVY_HAIL(
-        99, Gray30, Color.White,
+        99,
+        Gray30,
+        Color.White,
         R.string.thunderstorm_with_heavy_hail
     ),
     UNKNOWN(Int.MAX_VALUE, Color.Black, Color.White, R.string.unknown);

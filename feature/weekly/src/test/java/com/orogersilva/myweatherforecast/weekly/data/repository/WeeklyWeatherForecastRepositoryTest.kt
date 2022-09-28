@@ -20,7 +20,6 @@ class WeeklyWeatherForecastRepositoryTest {
     private lateinit var weeklyWeatherForecastRepository: WeeklyWeatherForecastRepository
 
     @Before fun setUp() {
-
         fakeWeeklyWeatherForecastRemoteDataSource = FakeWeeklyWeatherForecastRemoteDataSource()
 
         weeklyWeatherForecastRepository = WeeklyWeatherForecastRepositoryImpl(
@@ -29,7 +28,6 @@ class WeeklyWeatherForecastRepositoryTest {
     }
 
     @Test fun `Get weekly forecast, when it is passed latitude and longitude and there was an expected error, then return Result error`() = runTest {
-
         // ARRANGE
 
         val expectedException = Exception("404", Throwable())
@@ -51,7 +49,6 @@ class WeeklyWeatherForecastRepositoryTest {
     }
 
     @Test fun `Get weekly forecast, when it is passed latitude and longitude, then return Result Success with weather forecasts`() = runTest {
-
         // ARRANGE
 
         val expectedWeatherForecasts = listOf(

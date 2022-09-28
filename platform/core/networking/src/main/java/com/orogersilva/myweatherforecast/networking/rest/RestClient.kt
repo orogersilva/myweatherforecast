@@ -18,7 +18,6 @@ object RestClient {
         serviceClass: Class<T>,
         baseEndpoint: String
     ): T {
-
         val chuckerCollector = ChuckerCollector(
             context = context,
             showNotification = true,
@@ -36,7 +35,6 @@ object RestClient {
             )
 
         if (!IS_RELEASE_BUILD) {
-
             val loggingInterceptor = HttpLoggingInterceptor { message ->
                 Timber.tag("OkHttp").d(message)
             }

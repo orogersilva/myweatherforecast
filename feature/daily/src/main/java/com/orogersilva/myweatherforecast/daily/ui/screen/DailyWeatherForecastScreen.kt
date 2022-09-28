@@ -55,7 +55,6 @@ fun DailyWeatherForecastScreen(
     startDate: String,
     endDate: String
 ) {
-
     val uiState: DailyWeatherForecastViewState by viewModel.uiState.collectAsState()
 
     if (uiState.isLoadingDailyWeatherForecast) {
@@ -84,7 +83,6 @@ private fun DailyWeatherForecastOperationStateContent(
     if (uiState.isRequiredInitialDailyWeatherForecastLoad) {
         viewModel.loadDailyWeatherForecast(latitude, longitude, startDate, endDate)
     } else {
-
         if (uiState.hasError) {
             TODO("To build a friendly UI when there is some error in this flow.")
         } else {
@@ -184,7 +182,6 @@ private fun DailyTemperatureChart(
     paddingSpace: Dp,
     verticalStep: Int
 ) {
-
     val twoDigitsFormat = DecimalFormat("00")
 
     val controlPoints1 = mutableListOf<PointF>()
@@ -204,14 +201,13 @@ private fun DailyTemperatureChart(
             .clip(RoundedCornerShape(16.dp))
             .background(Color.White)
             .padding(
-                horizontal = 8.dp, vertical = 16.dp
+                horizontal = 8.dp,
+                vertical = 16.dp
             )
     ) {
-
         Canvas(
             modifier = Modifier.fillMaxSize(),
             onDraw = {
-
                 val xAxisSpace = (size.width - paddingSpace.toPx()) / xValues.size
                 val yAxisSpace = size.height / yValues.size
 
@@ -234,7 +230,6 @@ private fun DailyTemperatureChart(
                 }
 
                 for (i in temperatures.indices) {
-
                     val x = xAxisSpace * xValues[i]
                     val y = size.height -
                         (yAxisSpace * temperatures[i].toFloat() / verticalStep.toFloat())
@@ -245,27 +240,31 @@ private fun DailyTemperatureChart(
                 for (i in 1 until coordinates.size) {
                     controlPoints1.add(
                         PointF(
-                            (coordinates[i].x + coordinates[i - 1].x) / 2, coordinates[i - 1].y
+                            (coordinates[i].x + coordinates[i - 1].x) / 2,
+                            coordinates[i - 1].y
                         )
                     )
                     controlPoints2.add(
                         PointF(
-                            (coordinates[i].x + coordinates[i - 1].x) / 2, coordinates[i].y
+                            (coordinates[i].x + coordinates[i - 1].x) / 2,
+                            coordinates[i].y
                         )
                     )
                 }
 
                 val stroke = Path().apply {
-
                     reset()
 
                     moveTo(coordinates.first().x, coordinates.first().y)
 
                     for (i in 0 until coordinates.size - 1) {
                         cubicTo(
-                            controlPoints1[i].x, controlPoints1[i].y,
-                            controlPoints2[i].x, controlPoints2[i].y,
-                            coordinates[i + 1].x, coordinates[i + 1].y
+                            controlPoints1[i].x,
+                            controlPoints1[i].y,
+                            controlPoints2[i].x,
+                            controlPoints2[i].y,
+                            coordinates[i + 1].x,
+                            coordinates[i + 1].y
                         )
                     }
                 }
@@ -286,7 +285,6 @@ private fun DailyTemperatureChart(
 @Preview
 @Composable
 private fun DailyWeatherForecastMainContentPreview() {
-
     DailyWeatherForecastMainContent(
         DailyWeatherForecastViewState(
             dailyWeatherForecast = DailyWeatherForecast(
@@ -354,7 +352,6 @@ private fun DailyWeatherForecastMainContentPreview() {
 @Preview
 @Composable
 private fun DailyTemperatureChartPreview() {
-
     DailyTemperatureChart(
         modifier = Modifier
             .fillMaxWidth()

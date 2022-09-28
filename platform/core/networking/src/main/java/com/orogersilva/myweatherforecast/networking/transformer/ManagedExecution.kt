@@ -8,10 +8,8 @@ private val transformers = listOf(
 
 suspend fun <T> managedExecution(target: suspend () -> T): T =
     try {
-
         target.invoke()
     } catch (incoming: Throwable) {
-
         throw transformers
             .map { it.transform(incoming) }
             .reduce { transformed, another ->

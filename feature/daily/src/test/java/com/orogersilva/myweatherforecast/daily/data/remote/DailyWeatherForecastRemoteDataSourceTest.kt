@@ -27,7 +27,6 @@ class DailyWeatherForecastRemoteDataSourceTest {
     private lateinit var dailyWeatherForecastRemoteDataSource: DailyWeatherForecastRemoteDataSource
 
     @Before fun setUp() {
-
         val myWeatherForecastApiClient = restInfrastructureRule.server
             .wireRestApi<MyWeatherForecastApiClient>()
 
@@ -37,7 +36,6 @@ class DailyWeatherForecastRemoteDataSourceTest {
     }
 
     @Test fun `Get daily forecast, when there is some issue incoming from client, then return client system error`() = runTest {
-
         // ARRANGE
 
         restInfrastructureRule.restScenario(400)
@@ -69,7 +67,6 @@ class DailyWeatherForecastRemoteDataSourceTest {
     }
 
     @Test fun `Get daily forecast, when there is some issue incoming from server, then return remote system error`() = runTest {
-
         // ARRANGE
 
         restInfrastructureRule.restScenario(500)
@@ -101,7 +98,6 @@ class DailyWeatherForecastRemoteDataSourceTest {
     }
 
     @Test fun `Get daily forecast, when it is requested to get daily forecast, then return status code 200`() = runTest {
-
         // ARRANGE
 
         restInfrastructureRule.restScenario(

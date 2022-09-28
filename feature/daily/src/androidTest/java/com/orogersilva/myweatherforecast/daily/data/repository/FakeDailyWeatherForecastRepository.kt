@@ -24,9 +24,7 @@ class FakeDailyWeatherForecastRepository : DailyWeatherForecastRepository {
         startDateStr: String,
         endDateStr: String
     ): Flow<Result<DailyWeatherForecast>> {
-
         return flow {
-
             dailyWeatherForecast?.let { dwf ->
                 emit(Result.Success(dwf))
             }

@@ -16,13 +16,14 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var dailyFeatureApi: DailyFeatureApi
+
     @Inject
     lateinit var weeklyFeatureApi: WeeklyFeatureApi
+
     @Inject
     lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
         setContent {

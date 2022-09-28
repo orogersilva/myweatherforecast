@@ -17,7 +17,6 @@ import kotlin.test.assertEquals
 class WeatherForecastConverterTest {
 
     @Test fun `Convert weekly forecast DTO to weather forecasts correctly`() {
-
         // ARRANGE
 
         val expectedWeatherForecasts = createWeatherForecastsMinMax()
@@ -35,7 +34,6 @@ class WeatherForecastConverterTest {
     }
 
     @Test fun `Convert daily weather forecast DTO to daily weather forecast successfully`() {
-
         // ARRANGE
 
         val expectedDailyWeatherForecast = createDailyWeatherForecast()

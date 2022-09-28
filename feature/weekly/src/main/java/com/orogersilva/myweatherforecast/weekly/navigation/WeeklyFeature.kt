@@ -10,7 +10,7 @@ import com.orogersilva.myweatherforecast.weekly.ui.screen.RequestLastLocationPer
 import com.orogersilva.myweatherforecast.weeklyapi.WeeklyFeatureApi
 import javax.inject.Inject
 
-class WeeklyFeature @Inject constructor (
+class WeeklyFeature @Inject constructor(
     private val dailyFeatureApi: DailyFeatureApi,
     private val fusedLocationProviderClient: FusedLocationProviderClient
 ) : WeeklyFeatureApi {

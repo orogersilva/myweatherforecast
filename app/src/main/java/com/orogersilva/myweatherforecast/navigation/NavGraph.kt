@@ -12,7 +12,6 @@ fun NavGraph(
     dailyFeatureApi: DailyFeatureApi,
     weeklyFeatureApi: WeeklyFeatureApi
 ) {
-
     val navController = rememberNavController()
 
     NavHost(

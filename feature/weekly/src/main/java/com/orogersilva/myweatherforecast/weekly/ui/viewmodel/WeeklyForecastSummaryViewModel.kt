@@ -25,7 +25,6 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
         get() = _uiState.asStateFlow()
 
     fun loadWeeklyWeatherForecastSummary(latitude: Double, longitude: Double) {
-
         _uiState.update { currentUiState ->
             currentUiState.copy(
                 isLoadingWeeklyWeatherForecastSummary = true
@@ -33,7 +32,6 @@ class WeeklyForecastSummaryViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-
             weeklyWeatherForecastRepository.getWeeklyForecast(latitude, longitude)
                 .catch { e -> Result.Error(Exception(e)) }
                 .collect { weatherForecasts ->

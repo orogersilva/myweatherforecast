@@ -20,7 +20,6 @@ class DailyWeatherForecastRepositoryTest {
     private lateinit var dailyWeatherForecastRepository: DailyWeatherForecastRepository
 
     @Before fun setUp() {
-
         fakeDailyWeatherForecastRemoteDataSource = FakeDailyWeatherForecastRemoteDataSource()
 
         dailyWeatherForecastRepository = DailyWeatherForecastRepositoryImpl(
@@ -29,7 +28,6 @@ class DailyWeatherForecastRepositoryTest {
     }
 
     @Test fun `Get daily forecast, when it is passed related data to user location and date time filter and there was an expected error, then return Result error`() = runTest {
-
         // ARRANGE
 
         val expectedException = Exception("404", Throwable())
@@ -58,7 +56,6 @@ class DailyWeatherForecastRepositoryTest {
     }
 
     @Test fun `Get daily forecast, when it is passed related data to user location and date time filter, then return Result Success with daily weather forecast`() = runTest {
-
         // ARRANGE
 
         val expectedDailyWeatherForecast = createDailyWeatherForecast()

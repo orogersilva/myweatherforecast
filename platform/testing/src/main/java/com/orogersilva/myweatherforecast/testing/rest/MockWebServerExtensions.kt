@@ -7,7 +7,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.mockwebserver.MockWebServer
 
 inline fun <reified T> MockWebServer.wireRestApi(): T {
-
     val url = url("/").toString()
 
     val client = OkHttpClient.Builder()

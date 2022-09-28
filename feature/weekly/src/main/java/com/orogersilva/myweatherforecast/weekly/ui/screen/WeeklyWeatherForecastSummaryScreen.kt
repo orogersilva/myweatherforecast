@@ -88,7 +88,6 @@ fun RequestLastLocationPermissionForWeeklyWeatherForecast(
     fusedLocationClient: FusedLocationProviderClient,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
-
     var areGrantedLocationPermissions by remember { mutableStateOf(false) }
 
     val locationPermissionsState = rememberMultiplePermissionsState(
@@ -128,7 +127,6 @@ fun RequestLastLocationPermissionForWeeklyWeatherForecast(
         contract = ActivityResultContracts.StartIntentSenderForResult()
     ) { activityResult ->
         if (activityResult.resultCode == RESULT_OK) {
-
             fusedLocationClient.requestLocationUpdates(
                 locationRequest,
                 object : LocationCallback() {
@@ -200,7 +198,6 @@ private fun DeniedLocationPermissionContent(
     shouldShowRationale: Boolean,
     onRequestPermission: () -> Unit
 ) {
-
     val locationPermissionDescription = if (shouldShowRationale) {
         stringResource(
             id = R.string.weekly_location_permission_dialog_rationale_description
@@ -245,7 +242,6 @@ private fun HandleLocationPermission(
     deniedContent: @Composable (Boolean) -> Unit,
     grantedContent: @Composable () -> Unit
 ) {
-
     if (!areGrantedLocationPermissions && !locationPermissionsState.shouldShowRationale) {
         SideEffect {
             locationPermissionsState.launchMultiplePermissionRequest()
@@ -297,14 +293,13 @@ private fun WeatherForecastOperationStateContent(
     fusedLocationClient: FusedLocationProviderClient,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
-
     if (uiState.isRequiredInitialWeeklyWeatherForecastSummaryLoad) {
-
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     viewModel.loadWeeklyWeatherForecastSummary(
-                        location.latitude, location.longitude
+                        location.latitude,
+                        location.longitude
                     )
                 } else {
                     // TODO("To handle this flow when location is null.")
@@ -314,7 +309,6 @@ private fun WeatherForecastOperationStateContent(
                 TODO("To handle this exception in the future.")
             }
     } else {
-
         if (uiState.hasError) {
             TODO("To build a friendly UI when there is some error in this flow.")
         } else {
@@ -390,13 +384,11 @@ private fun WeatherForecastMainContent(
     fusedLocationClient: FusedLocationProviderClient,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
-
     SwipeRefresh(
         state = rememberSwipeRefreshState(
             isRefreshing = uiState.isLoadingWeeklyWeatherForecastSummary
         ),
         onRefresh = {
-
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     if (location != null) {
@@ -466,7 +458,6 @@ private fun DayWeatherContent(
     longitude: Double,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
-
     val weatherLocalDate = LocalDate.parse(dateStr)
     val temperatureDecimalFormat = DecimalFormat("0.0")
 
@@ -497,7 +488,7 @@ private fun DayWeatherContent(
                     .fillMaxWidth()
                     .wrapContentHeight(),
                 textAlign = TextAlign.Center,
-                fontSize = 18.sp,
+                fontSize = 18.sp
             )
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -608,7 +599,6 @@ private fun WeatherForecastMainContentPreview() {
 @Preview
 @Composable
 private fun WeeklyWeatherForecastCarouselPreview() {
-
     val weeklyWeatherForecastMinMaxSummaryViewState = WeeklyWeatherForecastSummaryViewState(
         weatherForecasts = mutableListOf(
             WeatherForecastMinMax(

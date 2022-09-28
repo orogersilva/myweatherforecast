@@ -7,7 +7,7 @@ import com.orogersilva.myweatherforecast.networking.transformer.managedExecution
 import com.orogersilva.myweatherforecast.weekly.data.source.WeeklyWeatherForecastRemoteDataSource
 import javax.inject.Inject
 
-class WeeklyWeatherForecastRemoteDataSourceImpl @Inject constructor (
+class WeeklyWeatherForecastRemoteDataSourceImpl @Inject constructor(
     private val myWeatherForecastApiClient: MyWeatherForecastApiClient
 ) : WeeklyWeatherForecastRemoteDataSource {
 

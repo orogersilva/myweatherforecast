@@ -11,13 +11,11 @@ object WeatherForecastConverter {
     fun convertWeeklyWeatherForecastDtoToWeatherForecastsMinMax(
         weeklyWeatherForecastDto: WeeklyWeatherForecastDto
     ): List<WeatherForecastMinMax> {
-
         val weatherForecastsMinMax = mutableListOf<WeatherForecastMinMax>()
 
         val DAYS_IN_A_WEEK = 7
 
         for (i in 0 until DAYS_IN_A_WEEK) {
-
             weatherForecastsMinMax.add(
                 WeatherForecastMinMax(
                     Pair(
