@@ -22,7 +22,7 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Formatting code analysis
-        run: ./gradlew lintFormat
+        run: ./gradlew lintKotlin
       - name: Structural code analysis
         run: ./gradlew detekt
       - name: Android Lint code analysis
