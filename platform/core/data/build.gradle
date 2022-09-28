@@ -39,9 +39,9 @@ dependencies {
 
     implementation project(':platform:core:ui')
 
-    api deps.moshi.core
-    kapt deps.moshi.kotlincodegen
+    api libs.moshi.core
+    kapt libs.moshi.kotlincodegen
 
-    testImplementation deps.junit.core
-    testImplementation deps.kotlin.test
+    testImplementation libs.junit.core
+    testImplementation libs.kotlin.test
 }

@@ -38,13 +38,13 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion versions.androidComposeCompilerVersion
+        kotlinCompilerExtensionVersion libs.versions.androidComposeCompilerVersion.get()
     }
 }
 
 dependencies {
 
-    api deps.android.compose.ui
-    api deps.android.hilt.navigationCompose
-    api deps.android.compose.navigation
+    api libs.android.compose.ui
+    api libs.android.hilt.navigationCompose
+    api libs.android.compose.navigation
 }

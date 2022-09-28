@@ -12,6 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+enableFeaturePreview("VERSION_CATALOGS")
+
 rootProject.name = "My Weather Forecast"
 include ':app'
 include ':platform:testing'

@@ -43,7 +43,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion versions.androidComposeCompilerVersion
+        kotlinCompilerExtensionVersion libs.versions.androidComposeCompilerVersion.get()
     }
 }
 
@@ -52,24 +52,24 @@ dependencies {
     implementation project(':feature:daily-api')
     api project(':feature:weekly-api')
 
-    implementation deps.android.lifecycle.viewModelKtx
-    debugImplementation deps.android.test.composeManifest
+    implementation libs.android.lifecycle.viewModelKtx
+    debugImplementation libs.android.test.composeManifest
 
-    implementation deps.accompanist.permissions
-    implementation deps.accompanist.swipeRefresh
-    implementation deps.coroutines.android
-    implementation deps.dagger.hilt.android
-    kapt deps.dagger.hilt.compiler
-    coreLibraryDesugaring deps.desugarSdkLibs.core
+    implementation libs.accompanist.permissions
+    implementation libs.accompanist.swipeRefresh
+    implementation libs.coroutines.android
+    implementation libs.dagger.hilt.android
+    kapt libs.dagger.hilt.compiler
+    coreLibraryDesugaring libs.desugarSdkLibs.core
 
     testImplementation project(':platform:testing')
 
-    testImplementation deps.coroutines.test
-    testImplementation deps.junit.core
-    testImplementation deps.kotlin.test
-    testImplementation deps.turbine.core
+    testImplementation libs.coroutines.test
+    testImplementation libs.junit.core
+    testImplementation libs.kotlin.test
+    testImplementation libs.turbine.core
 
     androidTestImplementation project(':platform:testing')
 
-    kaptAndroidTest deps.dagger.hilt.androidCompiler
+    kaptAndroidTest libs.dagger.hilt.androidCompiler
 }

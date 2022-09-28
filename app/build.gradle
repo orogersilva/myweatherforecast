@@ -93,7 +93,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion versions.androidComposeCompilerVersion
+        kotlinCompilerExtensionVersion libs.versions.androidComposeCompilerVersion.get()
     }
 
     packagingOptions {
@@ -108,11 +108,11 @@ dependencies {
     implementation project(':feature:daily')
     implementation project(':feature:weekly')
 
-    implementation deps.android.hilt.navigationCompose
+    implementation libs.android.hilt.navigationCompose
 
-    implementation deps.dagger.hilt.android
-    kapt deps.dagger.hilt.compiler
-    implementation deps.googlePlayServices.location
-    debugImplementation deps.leakCanary.android
-    implementation deps.timber.core
+    implementation libs.dagger.hilt.android
+    kapt libs.dagger.hilt.compiler
+    implementation libs.googlePlayServices.location
+    debugImplementation libs.leakCanary.android
+    implementation libs.timber.core
 }

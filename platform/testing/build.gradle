@@ -38,13 +38,13 @@ dependencies {
 
     implementation project(':platform:core:networking')
 
-    api deps.android.activity.activityCompose
-    api deps.android.test.compose
-    api deps.android.test.hilt
-    implementation deps.android.test.runner
+    api libs.android.activity.activityCompose
+    api libs.android.test.compose
+    api libs.android.test.hilt
+    implementation libs.android.test.runner
 
-    implementation deps.junit.core
-    implementation deps.okhttp.core
-    implementation deps.okhttp.loggingInterceptor
-    api deps.okhttp.mockWebServer
+    implementation libs.junit.core
+    implementation libs.okhttp.core
+    implementation libs.okhttp.loggingInterceptor
+    api libs.okhttp.mockWebServer
 }

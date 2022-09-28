@@ -1,0 +1,98 @@
+[versions]
+accompanistVersion = "0.25.1"
+androidActivityVersion = "1.6.0-rc01"
+androidComposeVersion = "1.1.1"
+androidComposeCompilerVersion = "1.2.0"
+androidComposeMaterial3Version = "1.0.0-alpha14"
+androidCustomViewCoreVersion = "1.2.0-alpha01"
+androidCustomViewPoolingContainerVersion = "1.0.0-rc01"
+androidDataStoreVersion = "1.0.0"
+androidGradlePluginVersion = "7.2.2"
+androidHiltNavigationComposeVersion = "1.0.0"
+androidKtxVersion = "1.7.0"
+androidLifecycleVersion = "2.5.1"
+androidNavigationComposeVersion = "2.5.1"
+androidTestCoreVersion = "1.4.0"
+androidTestRunnerVersion = "1.4.0"
+chuckerVersion = "3.5.2"
+coroutinesVersion = "1.6.1"
+daggerHiltVersion = "2.43.2"
+extJunitVersion = "1.1.3"
+espressoVersion = "3.4.0"
+googlePlayServicesLocationVersion = "20.0.0"
+junitVersion = "4.13.2"
+kotlinSerializationVersion = "1.3.3"
+kotlinVersion = "1.7.0"
+leakCanaryVersion = "2.9.1"
+moshiVersion = "1.13.0"
+okhttpVersion = "4.9.3"
+openJdkOlderRuntimesVersion = "1.1.6"
+retrofitVersion = "2.9.0"
+timberVersion = "5.0.1"
+turbineVersion = "0.8.0"
+twitterComposeRulesVersion = "0.0.16"
+
+[libraries]
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePluginVersion" }
+dagger-hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHiltVersion" }
+kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinVersion" }
+twitter-compose-rules = { group = "com.twitter.compose.rules", name = "ktlint", version.ref = "twitterComposeRulesVersion" }
+
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanistVersion" }
+accompanist-swipeRefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref = "accompanistVersion" }
+accompanist-systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanistVersion" }
+
+android-activity-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidActivityVersion" }
+android-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidComposeMaterial3Version" }
+android-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidNavigationComposeVersion" }
+android-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidComposeVersion" }
+android-compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidComposeVersion" }
+android-compose-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidComposeVersion" }
+android-customView-core = { group = "androidx.customview", name = "customview", version.ref = "androidCustomViewCoreVersion" }
+android-customView-poolingContainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "androidCustomViewPoolingContainerVersion" }
+android-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidDataStoreVersion" }
+android-hilt-navigationCompose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidHiltNavigationComposeVersion" }
+android-ktx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidKtxVersion" }
+android-lifecycle-viewModelKtx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidLifecycleVersion" }
+android-test-compose = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidComposeVersion" }
+android-test-composeManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidComposeVersion" }
+android-test-core = { group = "androidx.test", name = "core-ktx", version.ref = "androidTestCoreVersion" }
+android-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoVersion" }
+android-test-hilt = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHiltVersion" }
+android-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidTestRunnerVersion" }
+
+chucker-core = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chuckerVersion" }
+chucker-noop = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chuckerVersion" }
+
+desugarSdkLibs-core = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "openJdkOlderRuntimesVersion" }
+
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHiltVersion" }
+dagger-hilt-androidCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHiltVersion" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHiltVersion" }
+
+googlePlayServices-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "googlePlayServicesLocationVersion" }
+
+junit-core = { group = "junit", name = "junit", version.ref = "junitVersion" }
+junit-ext = { group = "androidx.test.ext", name = "junit", version.ref = "extJunitVersion" }
+
+kotlin-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinSerializationVersion" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlinVersion" }
+
+leakCanary-android = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakCanaryVersion" }
+
+moshi-core = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshiVersion" }
+moshi-kotlincodegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshiVersion" }
+
+okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttpVersion" }
+okhttp-loggingInterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpVersion" }
+okhttp-mockWebServer = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttpVersion" }
+
+retrofit-converterMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofitVersion" }
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+
+timber-core = { group = "com.jakewharton.timber", name = "timber", version.ref = "timberVersion" }
+
+turbine-core = { group = "app.cash.turbine", name = "turbine", version.ref = "turbineVersion" }

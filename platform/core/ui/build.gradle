@@ -40,23 +40,23 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion versions.androidComposeCompilerVersion
+        kotlinCompilerExtensionVersion libs.versions.androidComposeCompilerVersion.get()
     }
 }
 
 dependencies {
 
-    api deps.android.activity.activityCompose
-    api deps.android.compose.material3
-    api deps.android.compose.ui
-    debugApi deps.android.compose.uiTooling
-    api deps.android.compose.uiToolingPreview
-    debugApi deps.android.customView.core
-    debugApi deps.android.customView.poolingContainer
-    api deps.android.ktx.core
+    api libs.android.activity.activityCompose
+    api libs.android.compose.material3
+    api libs.android.compose.ui
+    debugApi libs.android.compose.uiTooling
+    api libs.android.compose.uiToolingPreview
+    debugApi libs.android.customView.core
+    debugApi libs.android.customView.poolingContainer
+    api libs.android.ktx.core
 
-    api deps.accompanist.systemUiController
-    implementation deps.dagger.hilt.android
-    kapt deps.dagger.hilt.compiler
-    api deps.googlePlayServices.location
+    api libs.accompanist.systemUiController
+    implementation libs.dagger.hilt.android
+    kapt libs.dagger.hilt.compiler
+    api libs.googlePlayServices.location
 }
