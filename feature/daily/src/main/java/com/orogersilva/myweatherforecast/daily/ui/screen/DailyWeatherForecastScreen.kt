@@ -156,17 +156,17 @@ private fun DailyWeatherForecastMainContent(
                 verticalArrangement = Arrangement.Center
             ) {
                 DailyTemperatureChart(
+                    xValues = (1..24).toList(),
+                    yValues = (1..8).map { i -> i * 5 },
+                    uiState.dailyWeatherForecast?.hourlyTemperatureList!!,
+                    16.dp,
+                    5,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
                             horizontal = 16.dp
                         )
-                        .height(400.dp),
-                    xValues = (1..24).toList(),
-                    yValues = (1..8).map { i -> i * 5 },
-                    uiState.dailyWeatherForecast?.hourlyTemperatureList!!,
-                    16.dp,
-                    5
+                        .height(400.dp)
                 )
             }
         }
@@ -175,12 +175,12 @@ private fun DailyWeatherForecastMainContent(
 
 @Composable
 private fun DailyTemperatureChart(
-    modifier: Modifier,
     xValues: List<Int>,
     yValues: List<Int>,
     temperatures: List<Double>,
     paddingSpace: Dp,
-    verticalStep: Int
+    verticalStep: Int,
+    modifier: Modifier = Modifier
 ) {
     val twoDigitsFormat = DecimalFormat("00")
 
@@ -353,9 +353,6 @@ private fun DailyWeatherForecastMainContentPreview() {
 @Composable
 private fun DailyTemperatureChartPreview() {
     DailyTemperatureChart(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(400.dp),
         xValues = (0..23).toList(),
         yValues = (1..8).map { i -> i * 5 },
         temperatures = listOf(
@@ -385,6 +382,9 @@ private fun DailyTemperatureChartPreview() {
             7.6
         ),
         paddingSpace = 16.dp,
-        verticalStep = 5
+        verticalStep = 5,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(400.dp)
     )
 }

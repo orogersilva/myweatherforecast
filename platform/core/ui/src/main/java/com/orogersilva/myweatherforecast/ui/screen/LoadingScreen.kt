@@ -11,14 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoadingSubScreen() {
+fun LoadingSubScreen(
+    modifier: Modifier = Modifier
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.Transparent)
     ) {
@@ -35,4 +38,10 @@ fun LoadingSubScreen() {
             CircularProgressIndicator()
         }
     }
+}
+
+@Preview
+@Composable
+fun LoadingSubScreenPreview() {
+    LoadingSubScreen()
 }
