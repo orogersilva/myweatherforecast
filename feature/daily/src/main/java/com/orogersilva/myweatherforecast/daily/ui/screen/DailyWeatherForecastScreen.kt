@@ -2,6 +2,9 @@ package com.orogersilva.myweatherforecast.daily.ui.screen
 
 import android.graphics.Paint
 import android.graphics.PointF
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -20,12 +23,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
@@ -196,8 +201,24 @@ private fun DailyTemperatureChart(
         }
     }
 
+    val dailyTemperatureChartAnimation = remember { Animatable(0.4f) }
+
+    LaunchedEffect("dailyTemperatureChartAnimationKey") {
+        dailyTemperatureChartAnimation.animateTo(
+            targetValue = 1f,
+            animationSpec = tween(
+                delayMillis = 10,
+                durationMillis = 100,
+                easing = FastOutSlowInEasing
+            )
+        )
+    }
+
     Box(
         modifier = modifier
+            .scale(
+                scale = dailyTemperatureChartAnimation.value
+            )
             .clip(RoundedCornerShape(16.dp))
             .background(Color.White)
             .padding(
