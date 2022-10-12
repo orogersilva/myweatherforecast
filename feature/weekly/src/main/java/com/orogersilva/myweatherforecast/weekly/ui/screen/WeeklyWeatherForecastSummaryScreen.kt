@@ -77,6 +77,7 @@ import com.orogersilva.myweatherforecast.ui.dialog.GenericDialog
 import com.orogersilva.myweatherforecast.ui.dialog.NoConnectivityDialog
 import com.orogersilva.myweatherforecast.ui.screen.LoadingSubScreen
 import com.orogersilva.myweatherforecast.ui.theme.Blue40
+import com.orogersilva.myweatherforecast.ui.theme.Gray80
 import com.orogersilva.myweatherforecast.ui.theme.Orange90
 import com.orogersilva.myweatherforecast.weekly.R
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel
@@ -672,15 +673,36 @@ private fun WeeklyWeatherForecastCarouselPreview() {
     )
 }
 
-@Preview
+@Preview(
+    name = "Clear Sky Day Weather Content",
+    group = "Day Weather Content"
+)
 @Composable
-private fun DayWeatherContentPreview() {
+private fun ClearSkyDayWeatherContentPreview() {
     DayWeatherContent(
         dateStr = "2022-09-25",
         min = 0.9,
         max = 23.7,
         backgroundColor = Blue40,
         textColor = Color.White,
+        latitude = -29.7509082,
+        longitude = -51.2131746,
+        onNavigateToDailyForecast = { _, _, _, _ -> }
+    )
+}
+
+@Preview(
+    name = "Fog Day Weather Content",
+    group = "Day Weather Content"
+)
+@Composable
+private fun FogDayWeatherContentPreview() {
+    DayWeatherContent(
+        dateStr = "2022-09-25",
+        min = 2.4,
+        max = 13.9,
+        backgroundColor = Gray80,
+        textColor = Color.Black,
         latitude = -29.7509082,
         longitude = -51.2131746,
         onNavigateToDailyForecast = { _, _, _, _ -> }
