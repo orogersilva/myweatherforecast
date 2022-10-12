@@ -50,6 +50,9 @@ import com.orogersilva.myweatherforecast.data.domain.model.DailyWeatherForecast
 import com.orogersilva.myweatherforecast.data.enum.WeatherCode
 import com.orogersilva.myweatherforecast.ui.screen.LoadingSubScreen
 import com.orogersilva.myweatherforecast.ui.theme.Orange90
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 import java.text.DecimalFormat
 
 @Composable
@@ -161,9 +164,9 @@ private fun DailyWeatherForecastMainContent(
                 verticalArrangement = Arrangement.Center
             ) {
                 DailyTemperatureChart(
-                    xValues = (1..24).toList(),
-                    yValues = (1..8).map { i -> i * 5 },
-                    uiState.dailyWeatherForecast?.hourlyTemperatureList!!,
+                    xValues = (1..24).toPersistentList(),
+                    yValues = (1..8).map { i -> i * 5 }.toPersistentList(),
+                    uiState.dailyWeatherForecast?.hourlyTemperatureList!!.toPersistentList(),
                     16.dp,
                     5,
                     modifier = Modifier
@@ -180,9 +183,9 @@ private fun DailyWeatherForecastMainContent(
 
 @Composable
 private fun DailyTemperatureChart(
-    xValues: List<Int>,
-    yValues: List<Int>,
-    temperatures: List<Double>,
+    xValues: ImmutableList<Int>,
+    yValues: ImmutableList<Int>,
+    temperatures: ImmutableList<Double>,
     paddingSpace: Dp,
     verticalStep: Int,
     modifier: Modifier = Modifier
@@ -374,9 +377,9 @@ private fun DailyWeatherForecastMainContentPreview() {
 @Composable
 private fun DailyTemperatureChartPreview() {
     DailyTemperatureChart(
-        xValues = (0..23).toList(),
-        yValues = (1..8).map { i -> i * 5 },
-        temperatures = listOf(
+        xValues = (0..23).toPersistentList(),
+        yValues = (1..8).map { i -> i * 5 }.toPersistentList(),
+        temperatures = persistentListOf(
             13.5,
             13.0,
             12.3,

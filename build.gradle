@@ -13,6 +13,7 @@ buildscript {
         classpath(libs.android.gradle.plugin)
         classpath(libs.dagger.hilt.android.gradle.plugin)
         classpath(libs.twitter.compose.rules)
+        classpath(libs.kotlin.collections.immutable)
         classpath(libs.kotlin.serialization)
 
         // NOTE: Do not place your application dependencies here; they belong

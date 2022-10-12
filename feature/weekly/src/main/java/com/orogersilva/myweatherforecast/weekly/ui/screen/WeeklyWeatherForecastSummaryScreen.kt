@@ -51,7 +51,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -82,6 +81,11 @@ import com.orogersilva.myweatherforecast.ui.theme.Blue40
 import com.orogersilva.myweatherforecast.ui.theme.Gray80
 import com.orogersilva.myweatherforecast.ui.theme.Orange90
 import com.orogersilva.myweatherforecast.weekly.R
+import com.orogersilva.myweatherforecast.weekly.ui.screen.annotation.ClearSkyDayWeatherContentPreviews
+import com.orogersilva.myweatherforecast.weekly.ui.screen.annotation.FogDayWeatherContentPreviews
+import com.orogersilva.myweatherforecast.weekly.ui.screen.annotation.RevokedLocationSettingAlertPreviews
+import com.orogersilva.myweatherforecast.weekly.ui.screen.annotation.WeatherForecastMainContentPreviews
+import com.orogersilva.myweatherforecast.weekly.ui.screen.annotation.WeeklyWeatherForecastCarouselPreviews
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel.WeeklyWeatherForecastSummaryViewState
 import java.text.DecimalFormat
@@ -325,9 +329,23 @@ private fun WeatherForecastOperationStateContent(
             TODO("To build a friendly UI when there is some error in this flow.")
         } else {
             WeatherForecastMainContent(
-                viewModel = viewModel,
                 uiState = uiState,
-                fusedLocationClient = fusedLocationClient,
+                onNewLocation = {
+                    fusedLocationClient.lastLocation
+                        .addOnSuccessListener { location: Location? ->
+                            if (location != null) {
+                                viewModel.loadWeeklyWeatherForecastSummary(
+                                    location.latitude,
+                                    location.longitude
+                                )
+                            } else {
+                                // TODO("To handle this flow when location is null.")
+                            }
+                        }
+                        .addOnFailureListener {
+                            TODO("To handle this exception in the future.")
+                        }
+                },
                 onNavigateToDailyForecast = onNavigateToDailyForecast
             )
         }
@@ -391,31 +409,15 @@ private fun RevokedLocationSettingAlert(
 @SuppressLint("MissingPermission")
 @Composable
 private fun WeatherForecastMainContent(
-    viewModel: WeeklyForecastSummaryViewModel,
     uiState: WeeklyWeatherForecastSummaryViewState,
-    fusedLocationClient: FusedLocationProviderClient,
+    onNewLocation: () -> Unit,
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
 ) {
     SwipeRefresh(
         state = rememberSwipeRefreshState(
             isRefreshing = uiState.isLoadingWeeklyWeatherForecastSummary
         ),
-        onRefresh = {
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    if (location != null) {
-                        viewModel.loadWeeklyWeatherForecastSummary(
-                            location.latitude,
-                            location.longitude
-                        )
-                    } else {
-                        // TODO("To handle this flow when location is null.")
-                    }
-                }
-                .addOnFailureListener {
-                    TODO("To handle this exception in the future.")
-                }
-        }
+        onRefresh = { onNewLocation.invoke() }
     ) {
         Column(
             modifier = Modifier
@@ -565,7 +567,7 @@ private fun getSystemLocale(): Locale =
         Resources.getSystem().configuration.locale
     }
 
-@Preview
+@RevokedLocationSettingAlertPreviews
 @Composable
 private fun RevokedLocationSettingAlertPreview() {
     RevokedLocationSettingAlert(
@@ -573,10 +575,9 @@ private fun RevokedLocationSettingAlertPreview() {
     )
 }
 
-/*@Preview
+@WeatherForecastMainContentPreviews
 @Composable
 private fun WeatherForecastMainContentPreview() {
-
     val weatherForecasts = mutableListOf(
         WeatherForecastMinMax(
             temperatureMinMax = Pair(12.9, 20.5),
@@ -623,23 +624,13 @@ private fun WeatherForecastMainContentPreview() {
     )
 
     WeatherForecastMainContent(
-        viewModel = WeeklyForecastSummaryViewModel(
-            object : WeeklyWeatherForecastRepository {
-                override fun getWeeklyForecast(
-                    latitude: Double,
-                    longitude: Double
-                ): Flow<Result<List<WeatherForecastMinMax>>> =
-                    flowOf(Result.Success(weatherForecasts))
-            }
-        ),
         uiState = weeklyWeatherForecastSummaryViewState,
-        latitude = -29.7509082,
-        longitude = -51.2131746,
+        onNewLocation = { },
         onNavigateToDailyForecast = { _, _, _, _ -> }
     )
-}*/
+}
 
-@Preview
+@WeeklyWeatherForecastCarouselPreviews
 @Composable
 private fun WeeklyWeatherForecastCarouselPreview() {
     val weeklyWeatherForecastMinMaxSummaryViewState = WeeklyWeatherForecastSummaryViewState(
@@ -693,10 +684,7 @@ private fun WeeklyWeatherForecastCarouselPreview() {
     )
 }
 
-@Preview(
-    name = "Clear Sky Day Weather Content",
-    group = "Day Weather Content"
-)
+@ClearSkyDayWeatherContentPreviews
 @Composable
 private fun ClearSkyDayWeatherContentPreview() {
     DayWeatherContent(
@@ -711,10 +699,7 @@ private fun ClearSkyDayWeatherContentPreview() {
     )
 }
 
-@Preview(
-    name = "Fog Day Weather Content",
-    group = "Day Weather Content"
-)
+@FogDayWeatherContentPreviews
 @Composable
 private fun FogDayWeatherContentPreview() {
     DayWeatherContent(
