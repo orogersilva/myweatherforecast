@@ -40,7 +40,7 @@ enum class WeatherCode(
 ) {
     CLEAR_SKY(0, Blue40, Color.White, R.string.clear_sky),
     MAINLY_CLEAR(1, Blue50, Color.Black, R.string.mainly_clear),
-    PARTY_CLOUDY(2, Blue60, Color.Black, R.string.party_cloudy),
+    PARTY_CLOUDY(2, Blue60, Color.Black, R.string.partly_cloudy),
     OVERCAST(3, Blue80, Color.Black, R.string.overcast),
     FOG(45, Gray80, Color.Black, R.string.fog),
     RIME_FOG(48, Gray50, Color.Black, R.string.rime_fog),

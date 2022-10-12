@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="clear_sky">Cielo limpio</string>
+    <string name="dense_drizzle">Llovizna densa</string>
+    <string name="dense_freezing_drizzle">Llovizna helada densa</string>
+    <string name="fog">Niebla</string>
+    <string name="heavy_freezing_rain">Fuerte lluvia helada</string>
+    <string name="heavy_rain">Fuerte lluvia helada</string>
+    <string name="heavy_snow_fall">Fuerte nevada</string>
+    <string name="heavy_snow_showers">Fuertes chubascos de nieve</string>
+    <string name="light_freezing_drizzle">Llovizna helada</string>
+    <string name="light_freezing_rain">Lluvia helada ligera</string>
+    <string name="light_drizzle">Llovizna ligera</string>
+    <string name="mainly_clear">Principalmente claro</string>
+    <string name="moderate_drizzle">Principalmente claro</string>
+    <string name="moderate_rain">Lluvia moderada</string>
+    <string name="moderate_rain_showers">Lluvia moderada</string>
+    <string name="moderate_snow_fall">Caída de nieve moderada</string>
+    <string name="overcast">Nublado</string>
+    <string name="partly_cloudy">Parcialmente nublado</string>
+    <string name="rime_fog">Niebla de escarcha</string>
+    <string name="slight_or_moderate_thunderstorm">Tormenta moderada</string>
+    <string name="slight_rain">Lluvia ligera</string>
+    <string name="slight_rain_showers">Lluvias ligeras</string>
+    <string name="slight_snow_fall">Lluvias ligeras</string>
+    <string name="slight_snow_showers">Chubascos de nieve leves</string>
+    <string name="snow_grains">Chubascos de nieve leves</string>
+    <string name="thunderstorm_with_heavy_hail">Tormenta con granizo</string>
+    <string name="thunderstorm_with_slight_hail">Tormenta con granizo leve</string>
+    <string name="unknown">Desconocido</string>
+    <string name="violent_rain_showers">Lluvias violentas</string>
+
+</resources>

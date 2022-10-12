@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="weekly_location_permission_dialog_confirm_button_label">Lo tengo</string>
+    <string name="weekly_location_permission_dialog_description">Se requiere permiso de ubicación para que el pronóstico del tiempo esté disponible. Por favor, conceda el permiso.</string>
+    <string name="weekly_location_permission_dialog_rationale_description">Se requiere la ubicación de su dispositivo para mostrar el pronóstico del tiempo desde donde se encuentra.</string>
+    <string name="weekly_location_permission_dialog_title">¿Quieres mostrar el pronóstico del tiempo?</string>
+
+    <string name="weekly_no_internet_dialog_confirm_label">Intentar otra vez</string>
+    <string name="weekly_no_internet_dialog_dismiss_label">Abandonar</string>
+
+    <string name="weekly_revoked_location_setting_dialog_confirm_option">Habilitar</string>
+    <string name="weekly_revoked_location_setting_dialog_description">Se necesita un poco para obtener el pronóstico del tiempo a su lado. Debe habilitar la ubicación del dispositivo.</string>
+    <string name="weekly_revoked_location_setting_dialog_dismiss_option">Abandonar</string>
+    <string name="weekly_revoked_location_setting_dialog_title">Acceso a la ubicación</string>
+
+</resources>

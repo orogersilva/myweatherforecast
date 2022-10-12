@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="weekly_location_permission_dialog_confirm_button_label">Entendi</string>
+    <string name="weekly_location_permission_dialog_description">Permissão de localização é necessária para a previsão do tempo estar disponível. Por favor, conceda essa permissão.</string>
+    <string name="weekly_location_permission_dialog_rationale_description">A localização do seu dispositivo é necessária para a previsão do tempo de onde você está ser mostrada.</string>
+    <string name="weekly_location_permission_dialog_title">Você deseja ver a previsão do tempo?</string>
+
+    <string name="weekly_no_internet_dialog_confirm_label">Tente novamente</string>
+    <string name="weekly_no_internet_dialog_dismiss_label">Sair</string>
+
+    <string name="weekly_revoked_location_setting_dialog_confirm_option">Habilitar</string>
+    <string name="weekly_revoked_location_setting_dialog_description">Falta pouco para ser mostrada a previsão do tempo próxima de onde você está. Você deve habilitar a localização do seu dispositivo.</string>
+    <string name="weekly_revoked_location_setting_dialog_dismiss_option">Sair</string>
+    <string name="weekly_revoked_location_setting_dialog_title">Acesso de localização</string>
+
+</resources>

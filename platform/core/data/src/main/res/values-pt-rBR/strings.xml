@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="clear_sky">Céu limpo</string>
+    <string name="dense_drizzle">Garoa densa</string>
+    <string name="dense_freezing_drizzle">Densa garoa gelada</string>
+    <string name="fog">Névoa</string>
+    <string name="heavy_freezing_rain">Forte chuva gelada</string>
+    <string name="heavy_rain">Forte chuva</string>
+    <string name="heavy_snow_fall">Forte nevasca</string>
+    <string name="heavy_snow_showers">Forte chuva de neve</string>
+    <string name="light_freezing_drizzle">Leve garoa gelada</string>
+    <string name="light_freezing_rain">Leve chuva gelada</string>
+    <string name="light_drizzle">Garoa leve</string>
+    <string name="mainly_clear">Tempo aberto</string>
+    <string name="moderate_drizzle">Garoa moderada</string>
+    <string name="moderate_rain">Chuva moderada</string>
+    <string name="moderate_rain_showers">Pancadas de chuva moderada</string>
+    <string name="moderate_snow_fall">Moderada nevasca</string>
+    <string name="overcast">Nublado</string>
+    <string name="partly_cloudy">Parcialmente nublado</string>
+    <string name="rime_fog">Névoa de geada</string>
+    <string name="slight_or_moderate_thunderstorm">Trovoadas passageiras</string>
+    <string name="slight_rain">Chuva passageira</string>
+    <string name="slight_rain_showers">Breve pancadas de chuva</string>
+    <string name="slight_snow_fall">Breve nevasca</string>
+    <string name="slight_snow_showers">Breve chuva de neve</string>
+    <string name="snow_grains">Nevasca leve</string>
+    <string name="thunderstorm_with_heavy_hail">Trovoadas com forte granizo</string>
+    <string name="thunderstorm_with_slight_hail">Trovoadas com breve granizo</string>
+    <string name="unknown">Desconhecido</string>
+    <string name="violent_rain_showers">Pancadas de chuva fortíssima</string>
+
+</resources>

@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.IntentSender
+import android.content.res.Resources
 import android.location.Location
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -84,6 +86,10 @@ import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSumma
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel.WeeklyWeatherForecastSummaryViewState
 import java.text.DecimalFormat
 import java.time.LocalDate
+import java.time.Month
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.Locale
 import kotlin.system.exitProcess
 
 @SuppressLint("MissingPermission")
@@ -465,7 +471,13 @@ private fun DayWeatherContent(
     onNavigateToDailyForecast: (Double, Double, String, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val weatherLocalDate = LocalDate.parse(dateStr)
+    val weatherLocalDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+    val monthName = Month.of(weatherLocalDate.monthValue).getDisplayName(
+        TextStyle.FULL_STANDALONE,
+        getSystemLocale()
+    ).uppercase()
+    val dayNumber = weatherLocalDate.dayOfMonth
+
     val temperatureDecimalFormat = DecimalFormat("0.0")
 
     val dayWeatherContentAnimation = remember { Animatable(0.2f) }
@@ -504,7 +516,7 @@ private fun DayWeatherContent(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "${weatherLocalDate.month} ${weatherLocalDate.dayOfMonth}",
+                text = "$monthName $dayNumber",
                 color = textColor,
                 modifier = Modifier
                     .weight(1f)
@@ -544,6 +556,14 @@ private fun DayWeatherContent(
         }
     }
 }
+
+private fun getSystemLocale(): Locale =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Resources.getSystem().configuration.locales.get(0)
+    } else {
+        @Suppress("DEPRECATION")
+        Resources.getSystem().configuration.locale
+    }
 
 @Preview
 @Composable
