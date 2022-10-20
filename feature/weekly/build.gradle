@@ -5,6 +5,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin: 'dev.chrisbanes.paparazzi'
+
 android {
 
     compileSdk buildConfig.compileSdk

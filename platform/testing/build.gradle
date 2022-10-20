@@ -47,4 +47,5 @@ dependencies {
     implementation libs.okhttp.core
     implementation libs.okhttp.loggingInterceptor
     api libs.okhttp.mockWebServer
+    api libs.test.parameter.injector
 }

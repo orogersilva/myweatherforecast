@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.IntentSender
-import android.content.res.Resources
 import android.location.Location
-import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -90,11 +88,9 @@ import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSumma
 import com.orogersilva.myweatherforecast.weekly.ui.viewmodel.WeeklyForecastSummaryViewModel.WeeklyWeatherForecastSummaryViewState
 import java.text.DecimalFormat
 import java.time.LocalDate
-import java.time.Month
 import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.Locale
 import kotlin.system.exitProcess
+import com.orogersilva.myweatherforecast.weekly.data.Month as MyWeatherForecastMonth
 
 @SuppressLint("MissingPermission")
 @OptIn(ExperimentalPermissionsApi::class)
@@ -435,14 +431,15 @@ private fun WeatherForecastMainContent(
 }
 
 @Composable
-private fun WeeklyWeatherForecastCarousel(
+fun WeeklyWeatherForecastCarousel(
     uiState: WeeklyWeatherForecastSummaryViewState,
-    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit
+    onNavigateToDailyForecast: (Double, Double, String, String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .padding(horizontal = 24.dp)
     ) {
         items(uiState.weatherForecasts) { weatherForecast ->
@@ -474,10 +471,12 @@ private fun DayWeatherContent(
     modifier: Modifier = Modifier
 ) {
     val weatherLocalDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-    val monthName = Month.of(weatherLocalDate.monthValue).getDisplayName(
-        TextStyle.FULL_STANDALONE,
-        getSystemLocale()
-    ).uppercase()
+
+    val monthNameRef = requireNotNull(
+        MyWeatherForecastMonth.valueOf(weatherLocalDate.monthValue).monthNameRef
+    )
+
+    val monthName = stringResource(id = monthNameRef).uppercase()
     val dayNumber = weatherLocalDate.dayOfMonth
 
     val temperatureDecimalFormat = DecimalFormat("0.0")
@@ -559,14 +558,6 @@ private fun DayWeatherContent(
     }
 }
 
-private fun getSystemLocale(): Locale =
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Resources.getSystem().configuration.locales.get(0)
-    } else {
-        @Suppress("DEPRECATION")
-        Resources.getSystem().configuration.locale
-    }
-
 @RevokedLocationSettingAlertPreviews
 @Composable
 private fun RevokedLocationSettingAlertPreview() {
@@ -577,7 +568,7 @@ private fun RevokedLocationSettingAlertPreview() {
 
 @WeatherForecastMainContentPreviews
 @Composable
-private fun WeatherForecastMainContentPreview() {
+fun WeatherForecastMainContentPreview() {
     val weatherForecasts = mutableListOf(
         WeatherForecastMinMax(
             temperatureMinMax = Pair(12.9, 20.5),
@@ -686,7 +677,7 @@ private fun WeeklyWeatherForecastCarouselPreview() {
 
 @ClearSkyDayWeatherContentPreviews
 @Composable
-private fun ClearSkyDayWeatherContentPreview() {
+fun ClearSkyDayWeatherContentPreview() {
     DayWeatherContent(
         dateStr = "2022-09-25",
         min = 0.9,
@@ -701,7 +692,7 @@ private fun ClearSkyDayWeatherContentPreview() {
 
 @FogDayWeatherContentPreviews
 @Composable
-private fun FogDayWeatherContentPreview() {
+fun FogDayWeatherContentPreview() {
     DayWeatherContent(
         dateStr = "2022-09-25",
         min = 2.4,

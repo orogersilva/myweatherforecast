@@ -14,6 +14,7 @@ androidLifecycleVersion = "2.5.1"
 androidNavigationComposeVersion = "2.5.1"
 androidTestCoreVersion = "1.4.0"
 androidTestRunnerVersion = "1.4.0"
+chrisBanesPaparazziVersion = "1.1.0-sdk33-alpha02"
 chuckerVersion = "3.5.2"
 coroutinesVersion = "1.6.1"
 daggerHiltVersion = "2.43.2"
@@ -29,13 +30,16 @@ moshiVersion = "1.13.0"
 okhttpVersion = "4.9.3"
 openJdkOlderRuntimesVersion = "1.1.6"
 retrofitVersion = "2.9.0"
+testParameterInjectorVersion = "1.9"
 timberVersion = "5.0.1"
 turbineVersion = "0.8.0"
 twitterComposeRulesVersion = "0.0.20"
 
 [libraries]
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePluginVersion" }
+chris-banes-paparazzi-plugin = { group = "dev.chrisbanes.paparazzi", name = "paparazzi-gradle-plugin", version.ref = "chrisBanesPaparazziVersion" }
 dagger-hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHiltVersion" }
+kotlin-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable-jvm", version.ref = "kotlinCollectionsImmutableVersion" }
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinVersion" }
 twitter-compose-rules = { group = "com.twitter.compose.rules", name = "ktlint", version.ref = "twitterComposeRulesVersion" }
 
@@ -79,7 +83,6 @@ googlePlayServices-location = { group = "com.google.android.gms", name = "play-s
 junit-core = { group = "junit", name = "junit", version.ref = "junitVersion" }
 junit-ext = { group = "androidx.test.ext", name = "junit", version.ref = "extJunitVersion" }
 
-kotlin-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable-jvm", version.ref = "kotlinCollectionsImmutableVersion" }
 kotlin-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinSerializationVersion" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlinVersion" }
 
@@ -94,6 +97,8 @@ okhttp-mockWebServer = { group = "com.squareup.okhttp3", name = "mockwebserver",
 
 retrofit-converterMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofitVersion" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+
+test-parameter-injector = { group = "com.google.testparameterinjector", name = "test-parameter-injector", version.ref = "testParameterInjectorVersion" }
 
 timber-core = { group = "com.jakewharton.timber", name = "timber", version.ref = "timberVersion" }
 

@@ -11,6 +11,7 @@ buildscript {
     dependencies {
 
         classpath(libs.android.gradle.plugin)
+        classpath(libs.chris.banes.paparazzi.plugin)
         classpath(libs.dagger.hilt.android.gradle.plugin)
         classpath(libs.twitter.compose.rules)
         classpath(libs.kotlin.collections.immutable)

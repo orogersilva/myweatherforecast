@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="january">Enero</string>
+    <string name="february">Febrero</string>
+    <string name="march">Marzo</string>
+    <string name="april">Abril</string>
+    <string name="may">Mayo</string>
+    <string name="june">Junio</string>
+    <string name="july">Julio</string>
+    <string name="august">Agosto</string>
+    <string name="september">Septiembre</string>
+    <string name="october">Octubre</string>
+    <string name="november">Noviembre</string>
+    <string name="december">Diciembre</string>
+
     <string name="weekly_location_permission_dialog_confirm_button_label">Lo tengo</string>
     <string name="weekly_location_permission_dialog_description">Se requiere permiso de ubicación para que el pronóstico del tiempo esté disponible. Por favor, conceda el permiso.</string>
     <string name="weekly_location_permission_dialog_rationale_description">Se requiere la ubicación de su dispositivo para mostrar el pronóstico del tiempo desde donde se encuentra.</string>
