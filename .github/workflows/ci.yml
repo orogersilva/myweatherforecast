@@ -86,7 +86,7 @@ jobs:
   instrumentedtests:
 
     name: Instrumented Tests
-    needs: unittests
+    needs: screenshottests
     runs-on: macos-latest
 
     steps:
