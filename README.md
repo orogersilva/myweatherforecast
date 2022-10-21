@@ -21,6 +21,7 @@ This project is a personal sandbox app, experimenting with the latest libraries 
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 - [Navigation Compose](https://developer.android.com/jetpack/compose/navigation)
 - [Retrofit](https://github.com/square/retrofit)
+- [Gradle Version Catalogs](https://docs.gradle.org/current/userguide/platforms.html)
 
 ## Modularization
 
@@ -41,7 +42,7 @@ It follows the approach proposed by [Kent Dodds](https://kentcdodds.com/blog/wri
 - Unit tests
 - Integration tests
 - UI tests (coming soon)
-- Screenshot tests (coming soon)
+- Screenshot tests
 
 ## CI
 
@@ -50,6 +51,7 @@ It follows the approach proposed by [Kent Dodds](https://kentcdodds.com/blog/wri
 - [Android Lint](https://developer.android.com/studio/write/lint)
 - [Unit tests](https://developer.android.com/training/testing/local-tests)
 - [Integration tests](https://developer.android.com/training/testing/fundamentals)
+- [Screenshot tests](https://github.com/cashapp/paparazzi)
 
 ## Setup
 
