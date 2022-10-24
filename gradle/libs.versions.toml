@@ -1,15 +1,14 @@
 [versions]
 accompanistVersion = "0.25.1"
 androidActivityVersion = "1.6.0-rc01"
-androidComposeVersion = "1.3.0-rc01"
-androidComposeCompilerVersion = "1.3.0-rc01"
-androidComposeMaterial3Version = "1.0.0-alpha14"
-androidCustomViewCoreVersion = "1.2.0-alpha01"
-androidCustomViewPoolingContainerVersion = "1.0.0-rc01"
+androidComposeBillOfMaterialsVersion = "2022.10.00"
+androidComposeCompilerVersion = "1.3.0"
+androidCustomViewCoreVersion = "1.2.0-alpha02"
+androidCustomViewPoolingContainerVersion = "1.0.0"
 androidDataStoreVersion = "1.0.0"
-androidGradlePluginVersion = "7.3.0"
+androidGradlePluginVersion = "7.3.1"
 androidHiltNavigationComposeVersion = "1.0.0"
-androidKtxVersion = "1.7.0"
+androidKtxVersion = "1.9.0"
 androidLifecycleVersion = "2.5.1"
 androidNavigationComposeVersion = "2.5.1"
 androidTestCoreVersion = "1.4.0"
@@ -43,24 +42,26 @@ kotlin-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlin
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinVersion" }
 twitter-compose-rules = { group = "com.twitter.compose.rules", name = "ktlint", version.ref = "twitterComposeRulesVersion" }
 
+android-compose-billOfMaterials = { group = "androidx.compose", name = "compose-bom", version.ref = "androidComposeBillOfMaterialsVersion" }
+android-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+android-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+android-compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+android-compose-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+android-test-compose = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+android-test-composeManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanistVersion" }
 accompanist-swipeRefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref = "accompanistVersion" }
 accompanist-systemUiController = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanistVersion" }
 
 android-activity-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidActivityVersion" }
-android-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidComposeMaterial3Version" }
 android-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidNavigationComposeVersion" }
-android-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidComposeVersion" }
-android-compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidComposeVersion" }
-android-compose-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidComposeVersion" }
 android-customView-core = { group = "androidx.customview", name = "customview", version.ref = "androidCustomViewCoreVersion" }
 android-customView-poolingContainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "androidCustomViewPoolingContainerVersion" }
 android-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidDataStoreVersion" }
 android-hilt-navigationCompose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidHiltNavigationComposeVersion" }
 android-ktx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidKtxVersion" }
 android-lifecycle-viewModelKtx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidLifecycleVersion" }
-android-test-compose = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidComposeVersion" }
-android-test-composeManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidComposeVersion" }
 android-test-core = { group = "androidx.test", name = "core-ktx", version.ref = "androidTestCoreVersion" }
 android-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoVersion" }
 android-test-hilt = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHiltVersion" }

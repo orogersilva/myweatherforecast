@@ -8,9 +8,6 @@ import android.location.Location
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -35,7 +32,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -44,7 +40,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -481,9 +476,9 @@ private fun DayWeatherContent(
 
     val temperatureDecimalFormat = DecimalFormat("0.0")
 
-    val dayWeatherContentAnimation = remember { Animatable(0.2f) }
+    // val dayWeatherContentAnimation = remember { Animatable(0.2f) }
 
-    LaunchedEffect("dayWeatherContentAnimationKey") {
+    /*LaunchedEffect("dayWeatherContentAnimationKey") {
         dayWeatherContentAnimation.animateTo(
             targetValue = 1f,
             animationSpec = tween(
@@ -492,14 +487,14 @@ private fun DayWeatherContent(
                 easing = FastOutSlowInEasing
             )
         )
-    }
+    }*/
 
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = modifier
-            .scale(
+            /*.scale(
                 scale = dayWeatherContentAnimation.value
-            )
+            )*/
             .size(200.dp, 200.dp)
             .padding(16.dp)
             .clickable {

@@ -44,6 +44,8 @@ android {
 
 dependencies {
 
+    api platform(libs.android.compose.billOfMaterials)
+
     api libs.android.compose.ui
     api libs.android.hilt.navigationCompose
     api libs.android.compose.navigation

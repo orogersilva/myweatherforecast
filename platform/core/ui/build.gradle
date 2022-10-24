@@ -46,6 +46,8 @@ android {
 
 dependencies {
 
+    api platform(libs.android.compose.billOfMaterials)
+
     api libs.android.activity.activityCompose
     api libs.android.compose.material3
     api libs.android.compose.ui
