@@ -33,7 +33,9 @@ abstract class BasePaparazziTest {
         softButtons = false
     )
 
-    @get:Rule val paparazzi = Paparazzi()
+    @get:Rule val paparazzi = Paparazzi(
+        maxPercentDifference = 0.15
+    )
 
     fun snapshot(composable: @Composable () -> Unit) {
         paparazzi.unsafeUpdateConfig(deviceConfig = deviceConfig)
